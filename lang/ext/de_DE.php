@@ -1,0 +1,559 @@
+<?php
+$lang['friendlyname'] = 'AceEditor ';
+$lang['admindescription'] = 'AceEditor ist ein Syntaxhighlighter Modul das <strong>Ace</strong>,  einen eigenst&auml;ndigen Code-Editor geschrieben mit JavaScript  verwendet.<br /><strong>Hinweis:</strong> Internet Explorer wird zurzeit nicht unterst&uuml;zt!';
+$lang['settings_tab'] = 'Einstellungen';
+$lang['frontendsettings_tab'] = 'Frontend Einstellungen';
+$lang['frontend_head_settings'] = 'Frontend Head Einstellungen';
+$lang['frontend_syntaxarea_settings'] = 'Frontend Syntaxbereich Einstellungen';
+$lang['head_description'] = 'Diese Einstellungen werden als Standardeinstellungen f&uuml;r Ace Skripte verwendet, die im <code><head></code> der Seite eingebunden werden wenn <code>{AceEditor action=&#039;head&#039;}</code> in Seitenspezifischen Meta-Daten oder Template aufgerufen wird.';
+$lang['content_description'] = 'Diese Einstellungen werden als Standardeinstellungen f&uuml;r Syntaxhighlighter Bereich verwendet wenn <code>{AceEditor divid=&#039;editor&#039;}</code> tag in einer Seite aufgerufen wird.';
+$lang['syntaxareadescription'] = 'These preferences are used for default settings of Ace behavior when calling <code>{AceEditor divid=&#039;foo&#039;}</code> from a Page or Template';
+$lang['example_document'] = 'Dokument';
+$lang['width_title'] = 'Editor breite (in em)';
+$lang['height_title'] = 'Editor h&ouml;he (in em)';
+$lang['enable_ie'] = 'F&uuml;r Internet Explorer aktivieren';
+$lang['use_uncompressed'] = 'Unkomprimiert verwenden';
+$lang['use_uncompressed_text'] = 'K&ouml;nnte bei Problemen im Safari helfen.';
+$lang['enable_iedescription'] = 'Ace Syntaxhighlighter funktioniert in Internet Explorer nicht richtig.Aktivieren Sie diese Option auf eigene verantwortung!';
+$lang['frontend_width_title'] = 'Frontend Syntaxbereich breite (in px)';
+$lang['frontend_height_title'] = 'Frontend Syntaxbereich h&ouml;he (in px)';
+$lang['syntax_mode'] = 'Modus';
+$lang['themes'] = 'Aussehen';
+$lang['font_size'] = 'Schriftgr&ouml;&szlig;e';
+$lang['full_line'] = 'Ganze Zeile';
+$lang['highlight_active'] = 'Aktive Zeile markieren';
+$lang['show_invisibles'] = 'Zeige unsichtbare';
+$lang['persistent_hscroll'] = 'Persistentes HScroll';
+$lang['key_binding'] = 'Schl&uuml;sselbindung';
+$lang['soft_wrap'] = 'Soft Wrap';
+$lang['show_gutter'] = 'Gutter anzeigen';
+$lang['print_margin'] = 'Print Margin anzeigen';
+$lang['soft_tab'] = 'Soft Tab verwenden';
+$lang['highlight_selected'] = 'Ausgew&auml;hltes Wort markieren';
+$lang['enable_behaviors'] = 'Verhalten aktivieren';
+$lang['testareatext'] = 'Vorschau';
+$lang['js'] = 'JavaScript ';
+$lang['plain'] = 'Text';
+$lang['svg'] = 'SVG ';
+$lang['html'] = 'HTML ';
+$lang['css'] = 'CSS ';
+$lang['scss'] = 'SCSS ';
+$lang['coffee'] = 'CoffeeScript ';
+$lang['json'] = 'JSON ';
+$lang['python'] = 'Python ';
+$lang['ruby'] = 'Ruby ';
+$lang['perl'] = 'Perl ';
+$lang['php'] = 'PHP ';
+$lang['java'] = 'Java ';
+$lang['csharp'] = 'C# ';
+$lang['c_cpp'] = 'C++ ';
+$lang['clojure'] = 'Clojure ';
+$lang['ocaml'] = 'OCaml ';
+$lang['textile'] = 'Textile ';
+$lang['groovy'] = 'Groovy ';
+$lang['scala'] = 'Scala ';
+$lang['clouds'] = 'Clouds ';
+$lang['chrome'] = 'Chrome';
+$lang['clouds_midnight'] = 'Clouds Midnight ';
+$lang['cobalt'] = 'Cobalt ';
+$lang['crimson_editor'] = 'Crimson Editor ';
+$lang['dawn'] = 'Dawn ';
+$lang['dreamweaver'] = 'Dreamweaver';
+$lang['eclipse'] = 'Eclipse ';
+$lang['idle_fingers'] = 'idleFingers ';
+$lang['kr_theme'] = 'krTheme ';
+$lang['merbivore'] = 'Merbivore ';
+$lang['merbivore_soft'] = 'Merbivore Soft';
+$lang['mono_industrial'] = 'Mono Industrial';
+$lang['monokai'] = 'Monokai';
+$lang['pastel_on_dark'] = 'Pastel on dark';
+$lang['solarized_dark'] = 'Solarized Dark';
+$lang['solarized_light'] = 'Solarized Light';
+$lang['textmate'] = 'TextMate ';
+$lang['tomorrow'] = 'Tomorrow';
+$lang['tomorrow_night'] = 'Tomorrow Night';
+$lang['tomorrow_night_bright'] = 'Tomorrow Night Bright';
+$lang['tomorrow_night_blue'] = 'Tomorrow Night Blue';
+$lang['tomorrow_night_eighties'] = 'Tomorrow Night Eighties';
+$lang['twilight'] = 'Twilight ';
+$lang['vibrant_ink'] = 'Vibrant Ink ';
+$lang['ace'] = 'Ace ';
+$lang['vim'] = 'Vim ';
+$lang['emacs'] = 'EMacs ';
+$lang['custom'] = 'Benutzerdefiniert';
+$lang['off'] = 'Aus';
+$lang['40'] = '40 Zeichen';
+$lang['80'] = '80 Zeichen';
+$lang['100'] = '100 Zeichen';
+$lang['140'] = '140 Zeichen';
+$lang['savesettings'] = 'Einstellungen speichern';
+$lang['settingssaved'] = 'Ihre AceEditor-Einstellungen wurden gespeichert';
+$lang['frontendsettingssaved'] = 'Ihre AceEditor Frontend einstellungen wurden gespeichert';
+$lang['postinstall'] = 'AceEditor wurdeinstalliert! Setzen Sie die Berechtigung &quot;Modify Site Preferences&quot;, um dieses Modul verwenden zu k&ouml;nnen!';
+$lang['postuninstall'] = 'AceEditor wurde deinstalliert';
+$lang['really_uninstall'] = 'Wollen Sie wirklich AceEditor deinstallieren? Denken Sie nochmal nach!';
+$lang['help_param_action'] = 'wird verwendet, um die Aktion des Modul tags zu bestimmen. M&ouml;gliche werte sind &#039;default&#039; und &#039;head&#039;. F&uuml;r die korrekte Frontend Syntaxhighlighting Funktion sind beide aktionen notwendigben&ouml;tigt. <br />M&ouml;gliche werte sind:
+<ul>
+	<li>head</li>
+	<li>default</li>
+</ul>';
+$lang['help_param_modes'] = 'wird mit <code>{AceEditor action=&#039;head&#039;}</code> verwendet. Sie k&ouml;nnen mehrere durch Komma getrennte &#039;modes&#039;, die Sie auf Ihrer Website verwenden werden, angeben. Dies sollte im &amp;gt;head&amp;lt; bereich des Templates oder unter Seitenspezifische-Metadaten eingegeben werden. Dies &uuml;berschreibt Ihre Einstellungen die im Modul Admin-Bereich ausgew&auml;hlt wurden. <br />M&ouml;gliche werte sind:
+<ul>
+	<li>javascript</li> 
+	<li>plain</li> 
+	<li>svg</li> 
+	<li>html</li>
+	<li>css</li>
+	<li>scss</li>
+	<li>coffee</li>
+	<li>json</li>
+	<li>python</li>
+	<li>ruby</li>
+	<li>perl</li>
+	<li>php</li>
+	<li>java</li>
+	<li>csharp</li>
+	<li>c_cpp</li>
+	<li>clojure</li>
+	<li>ocaml</li>
+	<li>textile</li>
+	<li>groovy</li>
+	<li>scala</li>
+</ul>';
+$lang['help_param_themes'] = 'wird mit <code>{AceEditor action=&#039;head&#039;}</code> verwendet. Sie k&ouml;nnen mehrere durch Komma getrennte &#039;themes&#039; (Templates), die Sie auf Ihrer Website verwenden werden, angeben. Dies sollte im &amp;gt;head&amp;lt; bereich des Templates oder unter Seitenspezifische-Metadaten eingegeben werden. Dies &uuml;berschreibt Ihre Einstellungen die im Modul Admin-Bereich ausgew&auml;hlt wurden. <br />M&ouml;gliche werte sind:
+<ul>
+	<li>clouds</li> 
+	<li>clouds_midnight</li> 
+	<li>cobalt</li> 
+	<li>crimson_editor</li>
+	<li>dawn</li>
+	<li>eclipse</li>
+	<li>idle_fingers</li>
+	<li>kr_theme</li>
+	<li>merbivore</li>
+	<li>merbivore_soft</li>
+	<li>mono_industrial</li>
+	<li>monokai</li>
+	<li>pastel_on_dark</li>
+	<li>solarized_dark</li>
+	<li>solarized_light</li>
+	<li>textmate</li>
+	<li>twilight</li>
+	<li>vibrant_ink</li>
+</ul>';
+$lang['help_param_mode'] = 'wird innerhalb einer Seite mit <code>{AceEditor action = &#039;default&#039;}</ code> Modul-Tag verwendet. Damit wird SyntaxHighlighter Modus f&uuml;r aktuellen Code-Bereich festgelegt. <br /> M&ouml;gliche Werte sind:
+<ul>
+	<li>javascript</li> 
+	<li>plain</li> 
+	<li>svg</li> 
+	<li>html</li>
+	<li>css</li>
+	<li>scss</li>
+	<li>coffee</li>
+	<li>json</li>
+	<li>python</li>
+	<li>ruby</li>
+	<li>perl</li>
+	<li>php</li>
+	<li>java</li>
+	<li>csharp</li>
+	<li>c_cpp</li>
+	<li>clojure</li>
+	<li>ocaml</li>
+	<li>textile</li>
+	<li>groovy</li>
+	<li>scala</li>
+</ul>';
+$lang['help_param_theme'] = 'wird innerhalb einer Seite mit <code>{AceEditor action = &#039;default&#039;}</ code> Modul-Tag verwendet. Damit wird SyntaxHighlighter Template f&uuml;r aktuellen Code-Bereich festgelegt. <br /> M&ouml;gliche Werte sind:
+<ul>
+	<li>clouds</li> 
+	<li>clouds_midnight</li> 
+	<li>cobalt</li> 
+	<li>crimson_editor</li>
+	<li>dawn</li>
+	<li>eclipse</li>
+	<li>idle_fingers</li>
+	<li>kr_theme</li>
+	<li>merbivore</li>
+	<li>merbivore_soft</li>
+	<li>mono_industrial</li>
+	<li>monokai</li>
+	<li>pastel_on_dark</li>
+	<li>solarized_dark</li>
+	<li>solarized_light</li>
+	<li>textmate</li>
+	<li>twilight</li>
+	<li>vibrant_ink</li>
+</ul>';
+$lang['help_param_width'] = 'bestimmt die Breite des Syntaxhighlighter Bereichs in Pixel.';
+$lang['help_param_height'] = 'bestimmt die H&ouml;he des Syntaxhighlighter Bereichs in Pixel.';
+$lang['help_param_divid'] = 'id des Elements mit Ihrem Code. Verwenden Sie eindeutige ID f&uuml;r jeden Code snippet.';
+$lang['help_general_title'] = 'Allgemein';
+$lang['help_general_text'] = '<h3>What does this module do?</h3>
+<p>AceEditor is a Syntaxhighlighter module using <strong>Ace</strong> a standalone code editor written in JavaScript.<br /> 
+Goal of Ace code editor group is to create a web based code editor that matches and extends the features, usability and performance of existing native editors such as TextMate, Vim or Eclipse.<br />
+It can be easily embedded in any web page and JavaScript application.<br /> 
+Ace is developed as the primary editor for <a href="http://www.cloud9ide.com">Cloud9 IDE</a> and the successor of the Mozilla Skywriter (Bespin) Project.</p>
+<h3>Ace is hosted on GitHub</h3>
+<p>The Ace source code is hosted on GitHub. It is released under the Mozilla tri-license (MPL/GPL/LGPL).<br />
+This is the same license used by Firefox. This license is friendly to all kinds of projects, whether open source or not.<br />
+ Take charge of your editor and add your favorite language highlighting and keybindings!</p>
+<h3>Using AceEditor Module</h3>
+<p>Using AceEditor Module is simple.<br />
+After AceEditor was installed go to &quot;My Preferences &raquo; User Preferences&quot; and choose AceEditor as your Syntaxhighlighter of choice from &quot;Select syntax highlighter to use:&quot; Dropdown.<br />
+Make sure you have &#039;Modify Site Preferences&#039; Permsission.</p>
+<h3>Settings</h3>
+<p>You can change default Settings and Themes in &quot;Extensions &raquo; AceEditor&quot;</p>';
+$lang['help_keyboardshortcuts_title'] = 'Tastaturk&uuml;rzel';
+$lang['help_keyboardshortcuts_content'] = '      <h3>Default Keyboard Shortcuts</h3>
+
+<table class=&quot;pagetable&quot; cellspacing=&quot;0&quot; summary=&quot;Default Keyboard Shortcuts&quot;>
+<thead><tr>
+<th>PC (Windows/Linux)</td>
+<th>Mac</td>
+<th>action</td>
+</tr></thead>
+<tbody>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Ctrl-L</td>
+<td align=&quot;left&quot;>center selection</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Alt-Down</td>
+<td align=&quot;left&quot;>Command-Option-Down</td>
+<td align=&quot;left&quot;>copy lines down</td>
+</tr>
+<tr lcass=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Alt-Up</td>
+<td align=&quot;left&quot;>Command-Option-Up</td>
+<td align=&quot;left&quot;>copy lines up</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-F</td>
+<td align=&quot;left&quot;>Command-F</td>
+<td align=&quot;left&quot;>find</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-K</td>
+<td align=&quot;left&quot;>Command-G</td>
+<td align=&quot;left&quot;>find next</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-K</td>
+<td align=&quot;left&quot;>Command-Shift-G</td>
+<td align=&quot;left&quot;>find previous</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Down</td>
+<td align=&quot;left&quot;>Down,Ctrl-N</td>
+<td align=&quot;left&quot;>go line down</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Up</td>
+<td align=&quot;left&quot;>Up,Ctrl-P</td>
+<td align=&quot;left&quot;>go line up</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-End,Ctrl-Down</td>
+<td align=&quot;left&quot;>Command-End,Command-Down</td>
+<td align=&quot;left&quot;>go to end</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Left</td>
+<td align=&quot;left&quot;>Left,Ctrl-B</td>
+<td align=&quot;left&quot;>go to left</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-L</td>
+<td align=&quot;left&quot;>Command-L</td>
+<td align=&quot;left&quot;>go to line</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Alt-Right,End</td>
+<td align=&quot;left&quot;>Command-Right,End,Ctrl-E</td>
+<td align=&quot;left&quot;>go to line end</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Alt-Left,Home</td>
+<td align=&quot;left&quot;>Command-Left,Home,Ctrl-A</td>
+<td align=&quot;left&quot;>go to line start</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>PageDown</td>
+<td align=&quot;left&quot;>Option-PageDown,Ctrl-V</td>
+<td align=&quot;left&quot;>go to page down</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>PageUp</td>
+<td align=&quot;left&quot;>Option-PageUp</td>
+<td align=&quot;left&quot;>go to page up</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Right</td>
+<td align=&quot;left&quot;>Right,Ctrl-F</td>
+<td align=&quot;left&quot;>go to right</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Home,Ctrl-Up</td>
+<td align=&quot;left&quot;>Command-Home,Command-Up</td>
+<td align=&quot;left&quot;>go to start</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Left</td>
+<td align=&quot;left&quot;>Option-Left</td>
+<td align=&quot;left&quot;>go to word left</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Right</td>
+<td align=&quot;left&quot;>Option-Right</td>
+<td align=&quot;left&quot;>go to word right</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Tab</td>
+<td align=&quot;left&quot;>Tab</td>
+<td align=&quot;left&quot;>indent</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Alt-Down</td>
+<td align=&quot;left&quot;>Option-Down</td>
+<td align=&quot;left&quot;>move lines down</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Alt-Up</td>
+<td align=&quot;left&quot;>Option-Up</td>
+<td align=&quot;left&quot;>move lines up</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Shift-Tab</td>
+<td align=&quot;left&quot;>Shift-Tab</td>
+<td align=&quot;left&quot;>outdent</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Insert</td>
+<td align=&quot;left&quot;>Insert</td>
+<td align=&quot;left&quot;>overwrite</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>PageDown</td>
+<td align=&quot;left&quot;>pagedown</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>PageUp</td>
+<td align=&quot;left&quot;>pageup</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-Z,Ctrl-Y</td>
+<td align=&quot;left&quot;>Command-Shift-Z,Command-Y</td>
+<td align=&quot;left&quot;>redo</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-D</td>
+<td align=&quot;left&quot;>Command-D</td>
+<td align=&quot;left&quot;>remove line</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Ctrl-K</td>
+<td align=&quot;left&quot;>remove to line end</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Option-Backspace</td>
+<td align=&quot;left&quot;>remove to linestart</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Alt-Backspace,Ctrl-Alt-Backspace</td>
+<td align=&quot;left&quot;>remove word left</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Alt-Delete</td>
+<td align=&quot;left&quot;>remove word right</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-R</td>
+<td align=&quot;left&quot;>Command-Option-F</td>
+<td align=&quot;left&quot;>replace</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-R</td>
+<td align=&quot;left&quot;>Command-Shift-Option-F</td>
+<td align=&quot;left&quot;>replace all</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-A</td>
+<td align=&quot;left&quot;>Command-A</td>
+<td align=&quot;left&quot;>select all</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Shift-Down</td>
+<td align=&quot;left&quot;>Shift-Down</td>
+<td align=&quot;left&quot;>select down</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Shift-Left</td>
+<td align=&quot;left&quot;>Shift-Left</td>
+<td align=&quot;left&quot;>select left</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Shift-End</td>
+<td align=&quot;left&quot;>Shift-End</td>
+<td align=&quot;left&quot;>select line end</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Shift-Home</td>
+<td align=&quot;left&quot;>Shift-Home</td>
+<td align=&quot;left&quot;>select line start</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Shift-PageDown</td>
+<td align=&quot;left&quot;>Shift-PageDown</td>
+<td align=&quot;left&quot;>select page down</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Shift-PageUp</td>
+<td align=&quot;left&quot;>Shift-PageUp</td>
+<td align=&quot;left&quot;>select page up</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Shift-Right</td>
+<td align=&quot;left&quot;>Shift-Right</td>
+<td align=&quot;left&quot;>select right</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-End,Alt-Shift-Down</td>
+<td align=&quot;left&quot;>Command-Shift-Down</td>
+<td align=&quot;left&quot;>select to end</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Alt-Shift-Right</td>
+<td align=&quot;left&quot;>Command-Shift-Right</td>
+<td align=&quot;left&quot;>select to line end</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Alt-Shift-Left</td>
+<td align=&quot;left&quot;>Command-Shift-Left</td>
+<td align=&quot;left&quot;>select to line start</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-Home,Alt-Shift-Up</td>
+<td align=&quot;left&quot;>Command-Shift-Up</td>
+<td align=&quot;left&quot;>select to start</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Shift-Up</td>
+<td align=&quot;left&quot;>Shift-Up</td>
+<td align=&quot;left&quot;>select up</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-Left</td>
+<td align=&quot;left&quot;>Option-Shift-Left</td>
+<td align=&quot;left&quot;>select word left</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Shift-Right</td>
+<td align=&quot;left&quot;>Option-Shift-Right</td>
+<td align=&quot;left&quot;>select word right</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;></td>
+<td align=&quot;left&quot;>Ctrl-O</td>
+<td align=&quot;left&quot;>split line</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-7</td>
+<td align=&quot;left&quot;>Command-7</td>
+<td align=&quot;left&quot;>toggle comment</td>
+</tr>
+<tr class=&quot;row2&quot;>
+<td align=&quot;left&quot;>Ctrl-T</td>
+<td align=&quot;left&quot;>Ctrl-T</td>
+<td align=&quot;left&quot;>transpose letters</td>
+</tr>
+<tr class=&quot;row1&quot;>
+<td align=&quot;left&quot;>Ctrl-Z</td>
+<td align=&quot;left&quot;>Command-Z</td>
+<td align=&quot;left&quot;>undo</td>
+</tr>
+</tbody>
+</table>';
+$lang['help_frontend_title'] = 'Frontend';
+$lang['help_frontend_content'] = '<p>This Module and Ace Script can also be used as a Frontend Syntaxhighlighter.<br />
+To make it work you have to include jQuery Framework, for example using CMSMS {cms_jquery} tag and as well include {AceEditor} in your page twice. First add the module tag in your <head> section of Template or in &quot;Page Specific Metdata&quot; field of your Content page, like {AceEditor action=&#039;head&#039;} and another call to specify which area should be highlighted, for example {AceEditor divid=&#039;foo&#039;}, which would target a page element with id <em>foo</em>.</p>
+<h3>So how do you use it?</h3>
+<p>First include jQuery and Module tag in your Page <head> area, for example in &quot;Page Specific Metdata&quot;:</p>
+	<pre>
+	{cms_jquery}
+	{AceEditor action=&#039;head&#039;}
+	</pre>
+<p>This includes needed scripts for Ace Syntaxhighlighter to work.<br />
+In Modules Admin interface you can select default settings for your &#039;head&#039; action or use parameter modes=&#039;html,javascript&#039; and themes=&#039;textmate&#039; which would override selected Preferences.</p>
+<p>Now when you have needed scripts included, one more Module tag call is needed (for example in your Content Editor area) to specify which area of your Page should be highlighted.</p>
+	<pre>
+	{AceEditor divid=&#039;some-id&#039;}
+	</pre>
+<p>This tag includes needed Script and Style that is used to Highlight selected element with specified id.<br />
+All you need then is write your Code that you want to Highlight and wrap it inside an elemen like <div> with specified id.</p>';
+$lang['help_frontend_sample'] = '<pre id=&quot;some-id&quot;>
+<html>
+ &nbsp; &nbsp; <head>
+ &nbsp; &nbsp; <style type=&quot;text/css&quot;>
+ &nbsp; &nbsp; &nbsp; &nbsp; .text-layer {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-family: Monaco, &quot;Courier New&quot;, monospace;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; font-size: 12px;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cursor: text;
+ &nbsp; &nbsp; &nbsp; &nbsp; }
+ &nbsp; &nbsp; </style>
+ &nbsp; &nbsp; </head>
+ &nbsp; &nbsp; <body>
+ &nbsp; &nbsp; &nbsp; &nbsp; <h1 style=&quot;color:red&quot;>Juhu Kinners</h1>
+ &nbsp; &nbsp; </body> </html>
+</pre>
+</pre>';
+$lang['help_about_title'] = '&Uuml;ber';
+$lang['help_about_text'] = '<h3>Support</h3>
+<p>As per the GPL, this software is provided as-is. Please read the text of the license for the full disclaimer.</p>
+<h3>Copyright and License</h3>
+<p>Copyright &copy; 2012, Goran Ilic <a href="mailto:uniqu3e@gmail.com"><uniqu3e@gmail.com></a> <a href="http://www.ich-mach-das.at" rel="external">www.ich-mach-das.at</a>. All Rights Are Reserved.</p>
+<p>This module has been released under the <a href="http://www.gnu.org/licenses/licenses.html#GPL">GNU Public License</a>. You must agree to this license before using the module.</p>
+	<h3>Team</h3>
+	<ul>
+		<li>Goran Ilic (uniqu3) g.ilic@i-arts.eu <br />www.ich-mach-das.at</li>	
+		<li>Robert Campbell (calguy1000) calguy1000@cmsmadesimple.org  <br />www.calguy1000.com</li>		
+		<li>Jonathan Schmid (Foaly*) hi@jonathanschmid.de <br />www.jonathanschmid.de</li>
+	</ul>
+';
+$lang['changelog'] = '<h3>Version 0.1</h3>
+<ul>
+	<li>It&#039;s fresh! Nothing changed yet!</li>
+	<li>Using Ace Version 0.2.0</li>
+</ul>
+<h3>Version 0.2</h3>
+<ul>
+	<li>Added CTRL-S Keybinding</li>
+	<li>Added Fullscreenmode</li>
+	<li>Added Frontend Highlighting</li>
+	<li>Updated Ace</li>
+</ul>
+<h3>Version 0.2.1</h3>
+<ul>
+	<li>Added Internet Explorer preference</li>
+	<li>Updated ACE with themes</li>
+</ul>
+<h3>Roadmap</h3>
+<ul>
+	<li><del>Add Frontend Syntaxhighlighting</del></li>
+	<li><del>Add Fullscreenmode</del></li>
+	<li><del>Add Keybinding (CTRL+S)</del></li>
+	<li>Add Editor behavior (Vim, EMacs)</li>
+	<li>Maybe add Toolbar</li>
+</ul>';
+$lang['utmb'] = '156861353.1.10.1327496892';
+$lang['utma'] = '156861353.801856748.1327492432.1327492432.1327496892.2';
+$lang['utmc'] = '156861353';
+$lang['utmz'] = '156861353.1327492432.1.1.utmcsr=dev.cmsmadesimple.org|utmccn=(referral)|utmcmd=referral|utmcct=/';
+?>
