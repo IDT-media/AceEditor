@@ -1,7 +1,7 @@
 <?php
 #-------------------------------------------------------------------------
 # Module: AceEditor - Syntax highlighting editor http://ace.ajax.org/.
-# Version: 0.2, Goran Ilic uniqu3e@gmail.com http://www.ich-mach-das.at
+# Version: 0.2.3, Goran Ilic uniqu3e@gmail.com http://www.ich-mach-das.at
 #
 #-------------------------------------------------------------------------
 # CMS - CMS Made Simple is (c) 2007 by Ted Kulp (wishy@cmsmadesimple.org)
@@ -36,296 +36,378 @@
 #-------------------------------------------------------------------------
 
 class AceEditor extends CMSModule {
-	protected $noeditors = 0,
-	$headerinfosent = false,
-	$_htmlactive = false,
-	$_javascriptactive = false,
-	$_cssactive = false,
-	$_phpactive = false,
-	$_defaultactive = false;
+    protected $noeditors = 0,
+    $headerinfosent = false,
+    $_htmlactive = false,
+    $_javascriptactive = false,
+    $_cssactive = false,
+    $_phpactive = false,
+    $_defaultactive = false;
 
-	public function GetName() {
-		return 'AceEditor';
-	}
+    public function GetName() {
+        return 'AceEditor';
+    }
 
-	public function GetFriendlyName() {
-		return $this -> Lang('friendlyname');
-	}
+    public function GetFriendlyName() {
+        return $this->Lang('friendlyname');
+    }
 
-	public function GetVersion() {
-		return '0.2.3';
-	}
+    public function GetVersion() {
+        return '0.2.3';
+    }
 
-	public function GetHelp() {
+    public function GetHelp() {
 
-		$smarty = cmsms() -> GetSmarty();
-		$config = cmsms()-> GetConfig();			
-		$smarty -> assign('module_path', ($this -> GetModuleURLPath()));
-		
-		$smarty -> assign('help_general_title', $this -> Lang('help_general_title'));
-		$smarty -> assign('help_general_text', $this -> Lang('help_general_text'));
-		$smarty -> assign('help_keyboardshortcuts_title', $this -> Lang('help_keyboardshortcuts_title'));
-		$smarty -> assign('help_keyboardshortcuts_content', $this -> Lang('help_keyboardshortcuts_content'));
-		$smarty -> assign('help_frontend_title', $this -> Lang('help_frontend_title'));		
-		$smarty -> assign('help_frontend_content', $this -> Lang('help_frontend_content'));
-		$smarty -> assign('help_frontend_sample', cms_htmlentities($this -> Lang('help_frontend_sample')));
-		$smarty -> assign('help_about_title', $this -> Lang('help_about_title'));
-		$smarty -> assign('help_about_text', $this -> Lang('help_about_text'));
+        $smarty = cmsms()->GetSmarty();
+        $config = cmsms()->GetConfig();         
+        $smarty->assign('module_path', ($this->GetModuleURLPath()));
+        
+        $smarty->assign('help_general_title', $this->Lang('help_general_title'));
+        $smarty->assign('help_general_text', $this->Lang('help_general_text'));
+        $smarty->assign('help_keyboardshortcuts_title', $this->Lang('help_keyboardshortcuts_title'));
+        $smarty->assign('help_keyboardshortcuts_content', $this->Lang('help_keyboardshortcuts_content'));
+        $smarty->assign('help_frontend_title', $this->Lang('help_frontend_title'));     
+        $smarty->assign('help_frontend_content', $this->Lang('help_frontend_content'));
+        $smarty->assign('help_frontend_sample', cms_htmlentities($this->Lang('help_frontend_sample')));
+        $smarty->assign('help_about_title', $this->Lang('help_about_title'));
+        $smarty->assign('help_about_text', $this->Lang('help_about_text'));
 
-		return $this -> ProcessTemplate('help.tpl');
-	}
+        return $this->ProcessTemplate('help.tpl');
+    }
 
-	public function GetAuthor() {
-		return 'Goran Ilic';
-	}
+    public function GetAuthor() {
+        return 'Goran Ilic';
+    }
 
-	public function GetAuthorEmail() {
-		return 'uniqu3e@gmail.com';
-	}
+    public function GetAuthorEmail() {
+        return 'uniqu3e@gmail.com';
+    }
 
-	public function GetChangeLog() {
-		return $this -> Lang('changelog');
-	}
+    public function GetChangeLog() {
+        return $this->Lang('changelog');
+    }
 
-	public function IsPluginModule() {
-	  return true;
-	}
+    public function IsPluginModule() {
+        return true;
+    }
 
-	public function SetParameters() 
-	{
-		if (version_compare(CMS_VERSION, '1.10') < 0) {
-			$this -> InitializeFrontend();
-			$this -> InitializeAdmin();
-		}		
-	}
+    public function InitializeFrontend()
+    {
+        $this->RegisterModulePlugin();
+        $this->RestrictUnknownParams();
+        
+        $this->SetParameterType('action', CLEAN_STRING);
+        $this->SetParameterType('modes', CLEAN_STRING);
+        $this->SetParameterType('themes', CLEAN_STRING);
+        $this->SetParameterType('mode', CLEAN_STRING);
+        $this->SetParameterType('theme', CLEAN_STRING);
+        $this->SetParameterType('width', CLEAN_STRING);
+        $this->SetParameterType('height', CLEAN_STRING);
+        $this->SetParameterType('divid', CLEAN_STRING);
 
-	public function InitializeFrontend()
-	{
-		$this->RegisterModulePlugin();
-		$this->RestrictUnknownParams();
-		
-		$this->SetParameterType('action', CLEAN_STRING);
-		$this->SetParameterType('modes', CLEAN_STRING);
-		$this->SetParameterType('themes', CLEAN_STRING);
-		$this->SetParameterType('mode', CLEAN_STRING);
-		$this->SetParameterType('theme', CLEAN_STRING);
-		$this->SetParameterType('width', CLEAN_STRING);
-		$this->SetParameterType('height', CLEAN_STRING);
-		$this->SetParameterType('divid', CLEAN_STRING);
+    }
 
-	}
+    public function InitializeAdmin()
+    {
+        $this->CreateParameter('action', 'default', $this->Lang('help_param_action'));
+        $this->CreateParameter('modes', 'html', $this->Lang('help_param_modes'));
+        $this->CreateParameter('themes', 'textmate', $this->Lang('help_param_themes'));
+        $this->CreateParameter('mode', 'html', $this->Lang('help_param_mode'));
+        $this->CreateParameter('theme', 'textmate', $this->Lang('help_param_theme'));
+        $this->CreateParameter('width', '400', $this->Lang('help_param_width'));
+        $this->CreateParameter('height', '400', $this->Lang('help_param_height'));
+        $this->CreateParameter('divid', 'editor', $this->Lang('help_param_divid'));
 
-	public function InitializeAdmin()
-	{
-		$this->CreateParameter('action', 'default', $this->Lang('help_param_action'));
-		$this->CreateParameter('modes', 'html', $this->Lang('help_param_modes'));
-		$this->CreateParameter('themes', 'textmate', $this->Lang('help_param_themes'));
-		$this->CreateParameter('mode', 'html', $this->Lang('help_param_mode'));
-		$this->CreateParameter('theme', 'textmate', $this->Lang('help_param_theme'));
-		$this->CreateParameter('width', '400', $this->Lang('help_param_width'));
-		$this->CreateParameter('height', '400', $this->Lang('help_param_height'));
-		$this->CreateParameter('divid', 'editor', $this->Lang('help_param_divid'));
+    }
 
-	}	
+    public function SetParameters() 
+    {
+        if (version_compare(CMS_VERSION, '1.10') < 0) {
+            $this->InitializeFrontend();
+            $this->InitializeAdmin();
+        }       
+    }       
 
-	public function LazyLoadFrontend() 
-	{
-		return false; // till Smarty3 and LazyLoading issue is figured out
-	}
+    public function LazyLoadFrontend() 
+    {
+        return true;
+    }
 
-	public function HasAdmin() {
-		return true;
-	}
+    public function LazyLoadAdmin() {
+        return true;
+    }    
 
-	public function GetAdminSection() {
-		return 'extensions';
-	}	
+    public function HasAdmin() {
+        return true;
+    }
 
-	public function GetAdminDescription() {
-		return $this -> Lang('admindescription');
-	}
+    public function GetAdminSection() {
+        return 'extensions';
+    }   
 
-	public function VisibleToAdminUser() {
-		return $this -> CheckPermission('Modify Site Preferences');
-	}
+    public function GetAdminDescription() {
+        return $this->Lang('admindescription');
+    }
 
-	public function MinimumCMSVersion() {
-		return "1.9";
-	}
+    public function VisibleToAdminUser() {
+        return $this->CheckPermission('Modify Site Preferences');
+    }
 
-	public function MaximumCMSVersion() {
-		return "1.11";
-	}
+    public function MinimumCMSVersion() {
+        return "1.9";
+    }
 
-	public function InstallPostMessage() {
-		return $this -> Lang('postinstall');
-	}
+    public function MaximumCMSVersion() {
+        return "1.11";
+    }
 
-	public function UninstallPostMessage() {
-		return $this -> Lang('postuninstall');
-	}
+    public function InstallPostMessage() {
+        return $this->Lang('postinstall');
+    }
 
-	public function UninstallPreMessage() {
-		return $this -> Lang('really_uninstall');
-	}
+    public function UninstallPostMessage() {
+        return $this->Lang('postuninstall');
+    }
 
-	public function HasCapability($capability, $params = array()) {
-		switch($capability)
-		{
-			default:
-				return false;
-				break;
+    public function UninstallPreMessage() {
+        return $this->Lang('really_uninstall');
+    }
 
-			case 'wysiwyg':
-				return false;
-				break;
+    public function HasCapability($capability, $params = array()) {
+        switch($capability)
+        {
+            default:
+                return false;
+                break;
 
-			case 'syntaxhighlighting':
-				return true;
-				break;
-		}
-	}
+            case 'wysiwyg':
+                return false;
+                break;
 
-	public function IsWYSIWYG() {
-		return false;
-	}
+            case 'syntaxhighlighting':
+                return true;
+                break;
+        }
+    }
 
-	public function IsSyntaxHighlighter() {
-		return true;
-	}
+    public function IsWYSIWYG() {
+        return false;
+    }
 
-	public function SyntaxPageFormSubmit() {
-		return;
-	}
+    public function IsSyntaxHighlighter() {
+        return true;
+    }
 
-	public function SyntaxTextarea($name = 'textarea', $syntax = 'html', $columns = '80', $rows = '15', $encoding = '', $content = '', $stylesheet = '', $addtext = '')
-	{
-		$textarea = "";
-		$this -> syntaxactive = true;
-		$smarty = $this -> smarty;
-    	$config = cmsms() -> GetConfig();
-    	$smarty -> assign('textareaid', "editor".$this -> noeditors);
-		$smarty -> assign('editorid', "ace-editor".$this -> noeditors);
-    	$smarty -> assign('textareaname', $name);
-    	$smarty -> assign('syntax_content', $content);
-    	$smarty -> assign('id', $this -> noeditors);	
+    public function SyntaxPageFormSubmit() {
+        return;
+    }
 
-		$width = $this -> GetPreference('width','80');
-		$smarty -> assign('width', $width);	
-		$height = $this -> GetPreference('height','40');
-		$smarty -> assign('height', $height);
-		if ($this -> GetPreference('enable_ie','1') == '1'){
-			$smarty -> assign('enable_ie', 'true');
-		} else {
-			$smarty -> assign('enable_ie', 'false');
-		}			
-		$theme = $this -> GetPreference('theme','textmate');
-		$smarty -> assign('theme', $theme);	
-		$fontsize = $this -> GetPreference('fontsize','12px');
-		$smarty -> assign('fontsize', $fontsize);				
-		if ($this -> GetPreference('full_line','1') == '1'){
-			 $smarty -> assign('full_line', 'line');
-		} else {
-			$smarty -> assign('full_line', 'text');
-		}
-		if ($this -> GetPreference('highlight_active',1) == 1){
-			$smarty -> assign('highlight_active', 'true');
-		} else {
-			$smarty -> assign('highlight_active', 'false');
-		}
-		if ($this -> GetPreference('show_invisibles','1') == '1'){
-			$smarty -> assign('show_invisibles', 'true');
-		} else {
-			$smarty -> assign('show_invisibles', 'false');
-		}
-		if ($this -> GetPreference('persistent_hscroll','1') == '1'){
-			$smarty -> assign('persistent_hscroll', 'true');
-		} else {
-			$smarty -> assign('persistent_hscroll', 'false');
-		}	
-		$soft_wrap = $this -> GetPreference('soft_wrap','80,80');
-		$smarty -> assign('soft_wrap', $soft_wrap);				
-		if ($this -> GetPreference('show_gutter','1') == '1'){
-			$smarty -> assign('show_gutter', 'true');
-		} else {
-			$smarty -> assign('show_gutter', 'false');
-		}	
-		if ($this -> GetPreference('print_margin','1') == '1'){
-			$smarty -> assign('print_margin', 'true');
-		} else {
-			$smarty -> assign('print_margin', 'false');
-		}
-		if ($this -> GetPreference('soft_tab',1) == 1){
-			$smarty -> assign('soft_tab', 'true');
-		} else {
-			$smarty -> assign('soft_tab', 'false');
-		}
-		if ($this -> GetPreference('highlight_selected','1') == '1'){
-			$smarty -> assign('highlight_selected', 'true');
-		} else {
-			$smarty -> assign('highlight_selected', 'false');
-		}
-		
-		switch ($syntax) {
-			case 'html' : $smarty -> assign('mode', 'html'); $this -> _htmlactive = true; break;
-			case 'js': case 'javascript' : $smarty -> assign('mode', 'javascript'); $this -> _javascriptactive = true; break;
-			case 'css' : $smarty -> assign('mode', 'css'); $this -> _cssactive = true; break;
-			case 'php' : $smarty -> assign('mode', 'php'); $this -> _phpactive = true; break;
-			default : $syntax = $this -> GetPreference('mode','html'); $smarty -> assign('mode', $syntax); $this -> _defaultactive = true; break;	
-		}
-		
-    	$textarea = $this -> ProcessTemplate('ace.tpl');
-		$this -> noeditors++;
+    public function SyntaxTextarea($name = 'textarea', $syntax = 'html', $columns = '80', $rows = '15', $encoding = '', $content = '', $stylesheet = '', $addtext = '')
+    {
+        $textarea = "";
+        $this->syntaxactive = true;
+        $smarty = $this->smarty;
+        $userid = get_userid();
+        $config = cmsms()->GetConfig();
+        $smarty->assign('textareaid', "editor".$this->noeditors);
+        $smarty->assign('editorid', "ace-editor".$this->noeditors);
+        $smarty->assign('textareaname', $name);
+        $smarty->assign('syntax_content', $content);
+        $smarty->assign('id', $this->noeditors);    
+        
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_width','80')) {
+            $width = cms_userprefs::get_for_user($userid,$this->GetName().'_width','80');
+        } else {
+            $width = $this->GetPreference('width','80');
+        }
+        $smarty->assign('width', $width);
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_height','40')) {
+            $height = cms_userprefs::get_for_user($userid,$this->GetName().'_height','40');
+        } else {
+            $height = $this->GetPreference('height','40');
+        }   
+        $smarty->assign('height', $height);
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_enable_ie','1')) {
+            $enable_ie = cms_userprefs::get_for_user($userid,$this->GetName().'_enable_ie','1');
+        } else {
+            $enable_ie = $this->GetPreference('enable_ie','1');
+        }
+        if ($enable_ie == '1'){
+            $smarty->assign('enable_ie', 'true');
+        } else {
+            $smarty->assign('enable_ie', 'false');
+        }
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate')) {
+            $theme = cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate');
+        } else {
+           $theme = $this->GetPreference('theme','textmate'); 
+        }           
+        $smarty->assign('theme', $theme);   
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_fontsize','12px')) {
+            $fontsize = cms_userprefs::get_for_user($userid,$this->GetName().'_fontsize','12px');
+        } else {
+            $fontsize = $this->GetPreference('fontsize','12px');
+        }
+        $smarty->assign('fontsize', $fontsize); 
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_full_line','1')) {
+            $full_line = cms_userprefs::get_for_user($userid,$this->GetName().'_full_line','1');
+        } else {
+            $full_line = $this->GetPreference('full_line','1');
+        }
+        if ($full_line == '1'){
+            $smarty->assign('full_line', 'line');
+        } else {
+            $smarty->assign('full_line', 'text');
+        }                   
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_active','1')) {
+            $highlight_active = cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_active','1');
+        } else {
+            $highlight_active = $this->GetPreference('highlight_active','1');
+        }
+        if ($highlight_active == '1'){
+            $smarty->assign('highlight_active', 'true');
+        } else {
+            $smarty->assign('highlight_active', 'false');
+        } 
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_show_invisibles','1')) {
+            $show_invisibles = cms_userprefs::get_for_user($userid,$this->GetName().'_show_invisibles','1');
+        } else {
+            $show_invisibles = $this->GetPreference('show_invisibles','1');
+        }
+        if ($show_invisibles == '1'){
+            $smarty->assign('show_invisibles', 'true');
+        } else {
+            $smarty->assign('show_invisibles', 'false');
+        } 
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_persistent_hscroll','1')) {
+            $persistent_hscroll = cms_userprefs::get_for_user($userid,$this->GetName().'_persistent_hscroll','1');
+        } else {
+            $persistent_hscroll = $this->GetPreference('persistent_hscroll','1');
+        }
+        if ($persistent_hscroll == '1'){
+            $smarty->assign('persistent_hscroll', 'true');
+        } else {
+            $smarty->assign('persistent_hscroll', 'false');
+        }
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_soft_wrap','80,80')) {
+            $soft_wrap = cms_userprefs::get_for_user($userid,$this->GetName().'_soft_wrap','80,80');
+        } else {
+            $soft_wrap = $this -> GetPreference('soft_wrap','80,80');
+        }
+        $smarty->assign('soft_wrap', $soft_wrap);   
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_show_gutter','1')) {
+            $show_gutter = cms_userprefs::get_for_user($userid,$this->GetName().'_show_gutter','1');
+        } else {
+            $show_gutter = $this->GetPreference('show_gutter','1');
+        }
+        if ($show_gutter == '1'){
+            $smarty->assign('show_gutter', 'true');
+        } else {
+            $smarty->assign('show_gutter', 'false');
+        }                   
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_print_margin','1')) {
+            $print_margin = cms_userprefs::get_for_user($userid,$this->GetName().'_print_margin','1');
+        } else {
+            $print_margin = $this->GetPreference('print_margin','1');
+        }
+        if ($print_margin == '1'){
+            $smarty->assign('print_margin', 'true');
+        } else {
+            $smarty->assign('print_margin', 'false');
+        }   
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_soft_tab',1)) {
+            $soft_tab = cms_userprefs::get_for_user($userid,$this->GetName().'_soft_tab',1);
+        } else {
+            $soft_tab = $this->GetPreference('soft_tab',1);
+        }
+        if ($soft_tab == 1){
+            $smarty->assign('soft_tab', 'true');
+        } else {
+            $smarty->assign('soft_tab', 'false');
+        } 
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_selected','1')) {
+            $highlight_selected = cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_selected','1');
+        } else {
+            $highlight_selected = $this->GetPreference('highlight_selected','1');
+        }
+        if ($highlight_selected == '1'){
+            $smarty->assign('highlight_selected', 'true');
+        } else {
+            $smarty->assign('highlight_selected', 'false');
+        } 
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html')) {
+            $syntax = cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html');
+        } else {
+            $syntax = $this->GetPreference('mode','html'); $smarty->assign('mode', $syntax);
+        }
+        switch ($syntax) {
+            case 'html' : $smarty->assign('mode','html'); $this->_htmlactive = true; break;
+            case 'js': case 'javascript' : $smarty->assign('mode','javascript'); $this->_javascriptactive = true; break;
+            case 'css' : $smarty->assign('mode','css'); $this->_cssactive = true; break;
+            case 'php' : $smarty->assign('mode','php'); $this -> _phpactive = true; break;
+            default : $smarty->assign('mode', $syntax); $this->_defaultactive = true; break;    
+        }
+        $textarea = $this->ProcessTemplate('ace.tpl');
+        $this->noeditors++;
 
-		return $textarea;											
-	}
+        return $textarea;                                           
+    }
 
-	public function SyntaxGenerateHeader($htmlresult = '') {
-		if ($this -> headerinfosent) return '';
-		$theme = $this -> GetPreference('theme','textmate');
+    public function SyntaxGenerateHeader($htmlresult = '') {
+        
+        $userid = get_userid();
+        if ($this->headerinfosent) return '';
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate')) {
+            $theme = cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate');
+        } else {
+            $theme = $this->GetPreference('theme','textmate');
+        }
 
-		if ($this -> _cssactive) {
-			$syntax = 'css';
-		}
-		if ($this -> _javascriptactive) {
-			$syntax = 'javascript';
-		}
-		if ($this -> _phpactive) {
-			$syntax = 'php';
-		}
-		if ($this -> _htmlactive) {
-			$syntax = 'html';
-		}
-		if ($this -> _defaultactive){
-			$syntax = $this -> GetPreference('mode','html');
-		}
+        if ($this->_cssactive) {
+            $syntax = 'css';
+        }
+        if ($this->_javascriptactive) {
+            $syntax = 'javascript';
+        }
+        if ($this->_phpactive) {
+            $syntax = 'php';
+        }
+        if ($this->_htmlactive) {
+            $syntax = 'html';
+        }
+        if ($this->_defaultactive){
+            if (cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html')) {
+                $syntax = cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html');
+            } else {
+                $syntax = $this->GetPreference('mode','html');
+            }
+        }
+        if (cms_userprefs::get_for_user($userid,$this->GetName().'_use_uncompressed')? '-uncompressed' : '') {
+            $compression = cms_userprefs::get_for_user($userid,$this->GetName().'_use_uncompressed')? '-uncompressed' : '';
+        } else {
+            $compression = $this->GetPreference('use_uncompressed') ? '-uncompressed' : '';
+        }
 
-		$compression = $this -> GetPreference('use_uncompressed') ? '-uncompressed' : '';
+        $header = '
+        <link rel="stylesheet" type="text/css" href="' . $this->GetModuleURLPath() . '/css/jquery-ui-1.8.16.custom.css" />
+        <script src="' . $this->GetModuleURLPath() . '/ace/src/ace' . $compression . '.js" type="text/javascript" charset="utf-8"></script>
+        <script src="' . $this->GetModuleURLPath() . '/ace/src/theme-' . $theme . $compression . '.js" type="text/javascript" charset="utf-8"></script>';
 
-		$header = '
-		<link rel="stylesheet" type="text/css" href="' . $this -> GetModuleURLPath() . '/css/jquery-ui-1.8.16.custom.css" />
-		<script src="' . $this -> GetModuleURLPath() . '/ace/src/ace' . $compression . '.js" type="text/javascript" charset="utf-8"></script>
-		<script src="' . $this -> GetModuleURLPath() . '/ace/src/theme-' . $theme . $compression . '.js" type="text/javascript" charset="utf-8"></script>';
+        if ($syntax != 'plain') {
+            $header .= '
+            <script src="' . $this->GetModuleURLPath() . '/ace/src/mode-' . $syntax . $compression . '.js" type="text/javascript" charset="utf-8"></script>';
+        }
 
-		if ($syntax != 'plain') {
-			$header .= '
-			<script src="' . $this -> GetModuleURLPath() . '/ace/src/mode-' . $syntax . $compression . '.js" type="text/javascript" charset="utf-8"></script>';
-		}
+        $this->headerinfosent = true;
+        return $header;
+    }
 
-		$this -> headerinfosent = true;
-		return $header;
-	}
-
-	public function LazyLoadAdmin() {
-		return true;
-	}
-
-	public function GetHeaderHTML() {
-		$incdir = $this -> GetModuleURLPath();
-		$tmpl = <<<EOT
-	<script type="text/javascript" src="{$incdir}/js/functions.js"></script>
+    public function GetHeaderHTML() {
+        $incdir = $this->GetModuleURLPath();
+        $tmpl = <<<EOT
+    <script type="text/javascript" src="{$incdir}/js/functions.js"></script>
 EOT;
-		return $this -> ProcessTemplateFromData($tmpl);
-	}
+        return $this->ProcessTemplateFromData($tmpl);
+    }
 }
 ?>
