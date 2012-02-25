@@ -37,7 +37,7 @@
 
 if (!is_object(cmsms())) exit;
 
-if (!$this->CheckPermission('Modify Site Preferences')) {
+if (!($this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
 	echo $this->ShowErrors($this->Lang('needpermission', array('Modify Site Preferences')));
 	return;
 }

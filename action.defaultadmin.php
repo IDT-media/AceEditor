@@ -37,7 +37,7 @@
 
 if (!is_object(cmsms())) exit;
 
-	if (!$this->CheckPermission('Modify Site Preferences')||!$this->CheckPermission('AceEditor User Preference')||!$this->CheckPermission('Modify Templates')) {
+	if (!($this->CheckPermission('Modify Site Preferences')||$this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
 	    echo $this->ShowErrors($this->Lang('needpermission', array('Modify Site Preferences')));
 		return;
 	}
@@ -52,22 +52,28 @@ if (!is_object(cmsms())) exit;
 	/* TabHeaders */
 	echo $this->StartTabHeaders();
 		// backend
-		if ($this->CheckPermission('Modify Site Preferences')||$this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates')) {
+		if (($this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
 		    echo $this->SetTabHeader('settings', $this->Lang('settings_tab'), ($tab == 'settings'));
         }
 		// frontend
-		echo $this->SetTabHeader('frontendsettings', $this->Lang('frontendsettings_tab'), ($tab == 'frontendsettings'));
+		if ($this->CheckPermission('Modify Site Preferences')) {
+		  echo $this->SetTabHeader('frontendsettings', $this->Lang('frontendsettings_tab'), ($tab == 'frontendsettings'));
+        }
 	echo $this->EndTabHeaders();
 	
 	/* TabContent */
 	echo $this->StartTabContent();
 		// backend
-		echo $this->StartTab('settings', $params);
-		include(dirname(__FILE__).'/function.admin_prefstab.php');
-		echo $this->EndTab();
+		if (($this->CheckPermission('Modify Site Preferences')||$this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
+		  echo $this->StartTab('settings', $params);
+	   	   include(dirname(__FILE__).'/function.admin_prefstab.php');
+		  echo $this->EndTab();
+        }
 		// frontend
-		echo $this->StartTab('frontendsettings', $params);
-		include(dirname(__FILE__).'/function.admin_frontendprefstab.php');
-		echo $this->EndTab();
+		if ($this->CheckPermission('Modify Site Preferences')) {
+		  echo $this->StartTab('frontendsettings', $params);
+		  include(dirname(__FILE__).'/function.admin_frontendprefstab.php');
+		  echo $this->EndTab();
+        }
 	echo $this->EndTabContent();
 ?>

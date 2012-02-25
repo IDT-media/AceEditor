@@ -2,6 +2,7 @@
 $lang['friendlyname']="AceEditor";
 $lang['admindescription'] = "AceEditor is a Syntaxhighlighter module using <strong>Ace</strong> a standalone code editor written in JavaScript.";
 
+
 /* --- Tabs --- */
 $lang['settings_tab'] = "Preferences";
 $lang['frontendsettings_tab'] = "Frontend Preferences";
@@ -114,9 +115,10 @@ $lang['140'] = "140 Chars";
 $lang['savesettings'] = "Save Preferences";
 $lang['settingssaved'] = "Your AceEditor settings have been saved";
 $lang['frontendsettingssaved'] = "Your AceEditor Frontend settings have been saved";
-$lang['postinstall'] = "AceEditor Successfully Installed! Set \"Modify Site Preferences\" permissions to use this module! If you're surfing with Safari, set the option \"Use uncompressed\".";
+$lang['postinstall'] = "AceEditor Successfully Installed! Set \"Modify Site Preferences\", \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module! If you're surfing with Safari, set the option \"Use uncompressed\".";
 $lang['postuninstall'] = "AceEditor Successfully Uninstalled";
 $lang['really_uninstall'] = "Really? Are you sure you want to uninstall AceEditor? Think again!";
+$lang['needpermission'] = "Missing Permission!. Set \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module.";
 
 /* --- Help --- */
 $lang['help_param_action'] = "is used to determine the action of Module tag. Possible values are 'default' and 'head'. Both are needed for correct Frontend Syntaxhighlighting function. <br />Possible values are:
@@ -592,6 +594,13 @@ $lang['changelog'] = "
 <h3>Version 0.2.2</h3>
 <ul>
 	<li>Fix for Safari/Mac</li>
+</ul>
+<h3>Version 0.2.3</h3>
+<ul>
+    <li>Updated to latest ace from github</li>
+    <li>Added additional preferences (Modify Templates, AceEditor User Preference)</li>
+    <li>Added ability to change AceEditor preferences per user</li>
+    <li>Moved module from extenions to myprefs</li>
 </ul>
 <h3>Roadmap</h3>
 <ul>

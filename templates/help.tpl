@@ -40,7 +40,9 @@
 		</div>
 	</div>
 	<div id="about_c">
+		<div class="pageoverflow">
 		{$help_about_text}
+		</div>
 	</div>		
 </div>
 {/strip}

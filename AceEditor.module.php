@@ -36,14 +36,23 @@
 #-------------------------------------------------------------------------
 
 class AceEditor extends CMSModule {
-    protected $noeditors = 0,
-    $headerinfosent = false,
-    $_htmlactive = false,
-    $_javascriptactive = false,
-    $_cssactive = false,
-    $_phpactive = false,
-    $_defaultactive = false;
 
+	#---------------------
+	# Attributes
+	#---------------------	
+
+    protected $noeditors = 0;
+    public $headerinfosent = false;
+    private $_htmlactive = false;
+    private $_javascriptactive = false;
+    private $_cssactive = false;
+    private $_phpactive = false;
+    private $_defaultactive = false;
+
+	#---------------------
+	# Module api methods
+	#---------------------		
+	
     public function GetName() {
         return 'AceEditor';
     }
@@ -142,7 +151,7 @@ class AceEditor extends CMSModule {
     }
 
     public function GetAdminSection() {
-        return 'extensions';
+        return 'myprefs';
     }   
 
     public function GetAdminDescription() {
@@ -150,7 +159,9 @@ class AceEditor extends CMSModule {
     }
 
     public function VisibleToAdminUser() {
-        return $this->CheckPermission('Modify Site Preferences');
+        return $this->CheckPermission('Modify Site Preferences')||
+               $this->CheckPermission('AceEditor User Preference')||
+               $this->CheckPermission('Modify Templates');
     }
 
     public function MinimumCMSVersion() {
@@ -204,10 +215,10 @@ class AceEditor extends CMSModule {
 
     public function SyntaxTextarea($name = 'textarea', $syntax = 'html', $columns = '80', $rows = '15', $encoding = '', $content = '', $stylesheet = '', $addtext = '')
     {
-        $textarea = "";
+        $textarea = '';
+        $syntax = '';
         $this->syntaxactive = true;
         $smarty = $this->smarty;
-        $userid = get_userid();
         $config = cmsms()->GetConfig();
         $smarty->assign('textareaid', "editor".$this->noeditors);
         $smarty->assign('editorid', "ace-editor".$this->noeditors);
@@ -215,138 +226,74 @@ class AceEditor extends CMSModule {
         $smarty->assign('syntax_content', $content);
         $smarty->assign('id', $this->noeditors);    
         
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_width','80')) {
-            $width = cms_userprefs::get_for_user($userid,$this->GetName().'_width','80');
-        } else {
-            $width = $this->GetPreference('width','80');
-        }
-        $smarty->assign('width', $width);
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_height','40')) {
-            $height = cms_userprefs::get_for_user($userid,$this->GetName().'_height','40');
-        } else {
-            $height = $this->GetPreference('height','40');
-        }   
-        $smarty->assign('height', $height);
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_enable_ie','1')) {
-            $enable_ie = cms_userprefs::get_for_user($userid,$this->GetName().'_enable_ie','1');
-        } else {
-            $enable_ie = $this->GetPreference('enable_ie','1');
-        }
-        if ($enable_ie == '1'){
+		// Assign prefs
+        $smarty->assign('width', $this->AceGetPreference('width', '80'));
+        $smarty->assign('height', $this->AceGetPreference('height', '40'));
+        $smarty->assign('theme', $this->AceGetPreference('theme')); 
+        $smarty->assign('fontsize', $this->AceGetPreference('fontsize')); 		
+        $smarty->assign('soft_wrap', $this->AceGetPreference('soft_wrap')); 
+		
+        if ($this->AceGetPreference('enable_ie')){
             $smarty->assign('enable_ie', 'true');
         } else {
             $smarty->assign('enable_ie', 'false');
         }
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate')) {
-            $theme = cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate');
-        } else {
-           $theme = $this->GetPreference('theme','textmate'); 
-        }           
-        $smarty->assign('theme', $theme);   
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_fontsize','12px')) {
-            $fontsize = cms_userprefs::get_for_user($userid,$this->GetName().'_fontsize','12px');
-        } else {
-            $fontsize = $this->GetPreference('fontsize','12px');
-        }
-        $smarty->assign('fontsize', $fontsize); 
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_full_line','1')) {
-            $full_line = cms_userprefs::get_for_user($userid,$this->GetName().'_full_line','1');
-        } else {
-            $full_line = $this->GetPreference('full_line','1');
-        }
-        if ($full_line == '1'){
+		          
+        if ($this->AceGetPreference('full_line')){
             $smarty->assign('full_line', 'line');
         } else {
             $smarty->assign('full_line', 'text');
-        }                   
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_active','1')) {
-            $highlight_active = cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_active','1');
-        } else {
-            $highlight_active = $this->GetPreference('highlight_active','1');
         }
-        if ($highlight_active == '1'){
+		
+        if ($this->AceGetPreference('highlight_active')){
             $smarty->assign('highlight_active', 'true');
         } else {
             $smarty->assign('highlight_active', 'false');
         } 
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_show_invisibles','1')) {
-            $show_invisibles = cms_userprefs::get_for_user($userid,$this->GetName().'_show_invisibles','1');
-        } else {
-            $show_invisibles = $this->GetPreference('show_invisibles','1');
-        }
-        if ($show_invisibles == '1'){
+		
+        if ($this->AceGetPreference('show_invisibles')){
             $smarty->assign('show_invisibles', 'true');
         } else {
             $smarty->assign('show_invisibles', 'false');
         } 
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_persistent_hscroll','1')) {
-            $persistent_hscroll = cms_userprefs::get_for_user($userid,$this->GetName().'_persistent_hscroll','1');
-        } else {
-            $persistent_hscroll = $this->GetPreference('persistent_hscroll','1');
-        }
-        if ($persistent_hscroll == '1'){
+		
+        if ($this->AceGetPreference('persistent_hscroll')){
             $smarty->assign('persistent_hscroll', 'true');
         } else {
             $smarty->assign('persistent_hscroll', 'false');
         }
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_soft_wrap','80,80')) {
-            $soft_wrap = cms_userprefs::get_for_user($userid,$this->GetName().'_soft_wrap','80,80');
-        } else {
-            $soft_wrap = $this -> GetPreference('soft_wrap','80,80');
-        }
-        $smarty->assign('soft_wrap', $soft_wrap);   
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_show_gutter','1')) {
-            $show_gutter = cms_userprefs::get_for_user($userid,$this->GetName().'_show_gutter','1');
-        } else {
-            $show_gutter = $this->GetPreference('show_gutter','1');
-        }
-        if ($show_gutter == '1'){
+ 
+        if ($this->AceGetPreference('show_gutter')){
             $smarty->assign('show_gutter', 'true');
         } else {
             $smarty->assign('show_gutter', 'false');
-        }                   
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_print_margin','1')) {
-            $print_margin = cms_userprefs::get_for_user($userid,$this->GetName().'_print_margin','1');
-        } else {
-            $print_margin = $this->GetPreference('print_margin','1');
-        }
-        if ($print_margin == '1'){
+        }        
+		
+        if ($this->AceGetPreference('print_margin')){
             $smarty->assign('print_margin', 'true');
         } else {
             $smarty->assign('print_margin', 'false');
         }   
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_soft_tab',1)) {
-            $soft_tab = cms_userprefs::get_for_user($userid,$this->GetName().'_soft_tab',1);
-        } else {
-            $soft_tab = $this->GetPreference('soft_tab',1);
-        }
-        if ($soft_tab == 1){
+		
+        if ($this->AceGetPreference('soft_tab')){
             $smarty->assign('soft_tab', 'true');
         } else {
             $smarty->assign('soft_tab', 'false');
         } 
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_selected','1')) {
-            $highlight_selected = cms_userprefs::get_for_user($userid,$this->GetName().'_highlight_selected','1');
-        } else {
-            $highlight_selected = $this->GetPreference('highlight_selected','1');
-        }
-        if ($highlight_selected == '1'){
+		
+        if ($this->AceGetPreference('highlight_selected')){
             $smarty->assign('highlight_selected', 'true');
         } else {
             $smarty->assign('highlight_selected', 'false');
         } 
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html')) {
-            $syntax = cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html');
-        } else {
-            $syntax = $this->GetPreference('mode','html'); $smarty->assign('mode', $syntax);
-        }
         switch ($syntax) {
             case 'html' : $smarty->assign('mode','html'); $this->_htmlactive = true; break;
             case 'js': case 'javascript' : $smarty->assign('mode','javascript'); $this->_javascriptactive = true; break;
             case 'css' : $smarty->assign('mode','css'); $this->_cssactive = true; break;
             case 'php' : $smarty->assign('mode','php'); $this -> _phpactive = true; break;
-            default : $smarty->assign('mode', $syntax); $this->_defaultactive = true; break;    
+            default : $smarty->assign('mode', $this->AceGetPreference('mode')); $this->_defaultactive = true; break;    
         }
+		
         $textarea = $this->ProcessTemplate('ace.tpl');
         $this->noeditors++;
 
@@ -355,37 +302,30 @@ class AceEditor extends CMSModule {
 
     public function SyntaxGenerateHeader($htmlresult = '') {
         
-        $userid = get_userid();
         if ($this->headerinfosent) return '';
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate')) {
-            $theme = cms_userprefs::get_for_user($userid,$this->GetName().'_theme','textmate');
-        } else {
-            $theme = $this->GetPreference('theme','textmate');
-        }
-
+		$theme = $this->AceGetPreference('theme');
+		$compression = $this->AceGetPreference('use_uncompressed') ? '-uncompressed' : '';
+		
         if ($this->_cssactive) {
             $syntax = 'css';
         }
+		
         if ($this->_javascriptactive) {
             $syntax = 'javascript';
         }
+		
         if ($this->_phpactive) {
             $syntax = 'php';
         }
+		
         if ($this->_htmlactive) {
             $syntax = 'html';
         }
+		
+		
         if ($this->_defaultactive){
-            if (cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html')) {
-                $syntax = cms_userprefs::get_for_user($userid,$this->GetName().'_mode','html');
-            } else {
-                $syntax = $this->GetPreference('mode','html');
-            }
-        }
-        if (cms_userprefs::get_for_user($userid,$this->GetName().'_use_uncompressed')? '-uncompressed' : '') {
-            $compression = cms_userprefs::get_for_user($userid,$this->GetName().'_use_uncompressed')? '-uncompressed' : '';
-        } else {
-            $compression = $this->GetPreference('use_uncompressed') ? '-uncompressed' : '';
+
+			$syntax = $this->AceGetPreference('mode');
         }
 
         $header = '
@@ -409,5 +349,24 @@ class AceEditor extends CMSModule {
 EOT;
         return $this->ProcessTemplateFromData($tmpl);
     }
-}
+	
+	#---------------------
+	# Module methods
+	#--------------------- 
+
+	final private function AceGetPreference($name) {
+	
+		$userid = get_userid();
+		$result = cms_userprefs::get_for_user($userid,$this->GetName().'_'.$name);
+		
+        if ($result === '') {
+			
+            $result = $this->GetPreference($name);
+        }
+
+		return $result;
+		
+	}
+	
+} // end of class
 ?>
