@@ -35,13 +35,14 @@
 # - Chat with developers on the #cms IRC channel
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
+if (!is_object(cmsms()))
+	exit;
 
-switch($oldversion) {
-    case '0.2.0':
-	   $this->SetPreference('enable_ie',0);
-    case '0.2.2':
-        // permissions
-        $this->CreatePermission('AceEditor User Preference','AceEditor User Preference');
-}    
+switch ($oldversion) {
+	case '0.2.0':
+		$this->SetPreference('enable_ie', 0);
+	case '0.2.2':
+		// permissions
+		$this->CreatePermission('AceEditor User Preference', 'AceEditor User Preference');
+}
 ?>

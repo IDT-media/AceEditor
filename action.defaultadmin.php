@@ -35,45 +35,48 @@
 # - Chat with developers on the #cms IRC channel
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
+if (!is_object(cmsms()))
+	exit;
 
-	if (!($this->CheckPermission('Modify Site Preferences')||$this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
-	    echo $this->ShowErrors($this->Lang('needpermission', array('Modify Site Preferences')));
-		return;
-	}
-	
-    $userid = get_userid(); // get user id
-    
- 	if (!empty($params['active_tab'])) {
+if (!($this->CheckPermission('Modify Site Preferences') || $this->CheckPermission('AceEditor User Preference') || $this->CheckPermission('Modify Templates'))) {
+	echo $this->ShowErrors($this->Lang('needpermission', array(
+		'Modify Site Preferences'
+	)));
+	return;
+}
+
+$userid = get_userid(); // get user id
+
+if (!empty($params['active_tab'])) {
 	$tab = $params['active_tab'];
-	} else {
-		$tab = 'settings';
-	}	
-	/* TabHeaders */
-	echo $this->StartTabHeaders();
-		// backend
-		if (($this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
-		    echo $this->SetTabHeader('settings', $this->Lang('settings_tab'), ($tab == 'settings'));
-        }
-		// frontend
-		if ($this->CheckPermission('Modify Site Preferences')) {
-		  echo $this->SetTabHeader('frontendsettings', $this->Lang('frontendsettings_tab'), ($tab == 'frontendsettings'));
-        }
-	echo $this->EndTabHeaders();
-	
-	/* TabContent */
-	echo $this->StartTabContent();
-		// backend
-		if (($this->CheckPermission('Modify Site Preferences')||$this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
-		  echo $this->StartTab('settings', $params);
-	   	   include(dirname(__FILE__).'/function.admin_prefstab.php');
-		  echo $this->EndTab();
-        }
-		// frontend
-		if ($this->CheckPermission('Modify Site Preferences')) {
-		  echo $this->StartTab('frontendsettings', $params);
-		  include(dirname(__FILE__).'/function.admin_frontendprefstab.php');
-		  echo $this->EndTab();
-        }
-	echo $this->EndTabContent();
+} else {
+	$tab = 'settings';
+}
+/* TabHeaders */
+echo $this->StartTabHeaders();
+// backend
+if (($this->CheckPermission('AceEditor User Preference') || $this->CheckPermission('Modify Templates'))) {
+	echo $this->SetTabHeader('settings', $this->Lang('settings_tab'), ($tab == 'settings'));
+}
+// frontend
+if ($this->CheckPermission('Modify Site Preferences')) {
+	echo $this->SetTabHeader('frontendsettings', $this->Lang('frontendsettings_tab'), ($tab == 'frontendsettings'));
+}
+echo $this->EndTabHeaders();
+
+/* TabContent */
+echo $this->StartTabContent();
+// backend
+if (($this->CheckPermission('Modify Site Preferences') || $this->CheckPermission('AceEditor User Preference') || $this->CheckPermission('Modify Templates'))) {
+	echo $this->StartTab('settings', $params);
+	include(dirname(__FILE__) . '/function.admin_prefstab.php');
+	echo $this->EndTab();
+}
+// frontend
+if ($this->CheckPermission('Modify Site Preferences')) {
+	echo $this->StartTab('frontendsettings', $params);
+	include(dirname(__FILE__) . '/function.admin_frontendprefstab.php');
+	echo $this->EndTab();
+}
+echo $this->EndTabContent();
 ?>

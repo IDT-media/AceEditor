@@ -35,43 +35,46 @@
 # - Chat with developers on the #cms IRC channel
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
+if (!is_object(cmsms()))
+	exit;
 
-if (!($this->CheckPermission('AceEditor User Preference')||$this->CheckPermission('Modify Templates'))) {
-	echo $this->ShowErrors($this->Lang('needpermission', array('Modify Site Preferences')));
+if (!($this->CheckPermission('AceEditor User Preference') || $this->CheckPermission('Modify Templates'))) {
+	echo $this->ShowErrors($this->Lang('needpermission', array(
+		'Modify Site Preferences'
+	)));
 	return;
 }
 
-$userid = get_userid(); 
+$userid = get_userid();
 
-if(!empty($params['width']))
-{
-    cms_userprefs::set_for_user($userid, $this->GetName().'_width', $params['width']);
+if (!empty($params['width'])) {
+	cms_userprefs::set_for_user($userid, $this->GetName() . '_width', $params['width']);
 }
 
-if(!empty($params['height']))
-{
-    cms_userprefs::set_for_user($userid,$this->GetName().'_height', $params['height']);
+if (!empty($params['height'])) {
+	cms_userprefs::set_for_user($userid, $this->GetName() . '_height', $params['height']);
 }
 
-cms_userprefs::set_for_user($userid,$this->GetName().'_enable_ie', (isset($params['enable_ie']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_use_uncompressed', (isset($params['use_uncompressed']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_mode', $params['mode']);
-cms_userprefs::set_for_user($userid,$this->GetName().'_theme', $params['theme']);
-cms_userprefs::set_for_user($userid,$this->GetName().'_fontsize', $params['fontsize']); 
-cms_userprefs::set_for_user($userid,$this->GetName().'_full_line', (isset($params['full_line']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_highlight_active', (isset($params['highlight_active']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_show_invisibles', (isset($params['show_invisibles']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_persistent_hscroll', (isset($params['persistent_hscroll']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_keybinding', (isset($params['keybinding']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_soft_wrap', $params['soft_wrap']);
-cms_userprefs::set_for_user($userid,$this->GetName().'_show_gutter', (isset($params['show_gutter']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_print_margin', (isset($params['print_margin']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_soft_tab', (isset($params['soft_tab']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_highlight_selected', (isset($params['highlight_selected']) ? 1 : 0));
-cms_userprefs::set_for_user($userid,$this->GetName().'_enable_behaviors', (isset($params['enable_behaviors']) ? 1 : 0));    				
+cms_userprefs::set_for_user($userid, $this->GetName() . '_enable_ie', (isset($params['enable_ie']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_mode', $params['mode']);
+cms_userprefs::set_for_user($userid, $this->GetName() . '_theme', $params['theme']);
+cms_userprefs::set_for_user($userid, $this->GetName() . '_fontsize', $params['fontsize']);
+cms_userprefs::set_for_user($userid, $this->GetName() . '_full_line', (isset($params['full_line']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_highlight_active', (isset($params['highlight_active']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_show_invisibles', (isset($params['show_invisibles']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_persistent_hscroll', (isset($params['persistent_hscroll']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_keybinding', (isset($params['keybinding']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_soft_wrap', $params['soft_wrap']);
+cms_userprefs::set_for_user($userid, $this->GetName() . '_show_gutter', (isset($params['show_gutter']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_print_margin', (isset($params['print_margin']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_soft_tab', (isset($params['soft_tab']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_highlight_selected', (isset($params['highlight_selected']) ? 1 : 0));
+cms_userprefs::set_for_user($userid, $this->GetName() . '_enable_behaviors', (isset($params['enable_behaviors']) ? 1 : 0));
 
 // redirect to tab
-$params = array('module_message' => $this->Lang('settingssaved'), 'active_tab' => 'settings');
+$params = array(
+	'module_message' => $this->Lang('settingssaved'),
+	'active_tab' => 'settings'
+);
 $this->Redirect($id, 'defaultadmin', '', $params);
 ?>

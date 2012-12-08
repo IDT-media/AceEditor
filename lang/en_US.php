@@ -17,8 +17,6 @@ $lang['example_document'] = "Document";
 $lang['width_title'] = "Editor width (in em)";
 $lang['height_title'] = "Editor height (in em)";
 $lang['enable_ie'] = "Enable Internet Explorer";
-$lang['use_uncompressed'] = "Use uncompressed";
-$lang['use_uncompressed_text'] = 'Might help if you have problems using in Safari.';
 $lang['enable_iedescription'] = "Ace Syntaxhighlighter does not behave properly when using Internet Explorer. Enable this at your own risk!";
 $lang['frontend_width_title'] = "Frontend Syntaxarea width (in px)";
 $lang['frontend_height_title'] = "Frontend Syntaxarea height (in px)";
@@ -35,8 +33,21 @@ $lang['show_gutter'] = "Show Gutter";
 $lang['print_margin'] = "Show Print Margin";
 $lang['soft_tab'] = "Use Soft Tab";
 $lang['highlight_selected'] = "Highlight selected word";
-$lang['enable_behaviors'] = "Enable Behaviors";
+$lang['enable_behaviors'] = "Enable Behaviours";
 $lang['testareatext'] = "Preview";
+
+/* --- Toolbar --- */
+$lang['on'] = 'On';
+$lang['off'] = 'Off';
+$lang['line'] = 'Line';
+$lang['column'] = 'Column';
+$lang['current_line'] = 'Current line';
+$lang['total_lines'] = 'Total lines';
+$lang['go_line'] = 'Go to line';
+$lang['keybindings'] = 'Keybindings';
+$lang['ace'] = 'Ace';
+$lang['vim'] = 'Vim';
+$lang['emacs'] = 'EMacs';
 
 /* --- Select options --- */
 
@@ -69,8 +80,18 @@ $lang['ocaml'] = "OCaml";
 $lang['textile'] = "Textile";
 $lang['groovy'] = "Groovy";
 $lang['scala'] = "Scala";
+$lang['diff'] = "Diff";
+$lang['golang'] = "GO";
+$lang['yaml'] = "YAML";
+$lang['less'] = "LESS";
+$lang['scad'] = "OpenSCAD";
+$lang['sh'] = "SH";
+$lang['xquery'] = "XQuery";
+$lang['liquid'] = "Liquid";
+$lang['jsx'] = "JSX";
 
 /* themes */
+$lang['ambiance'] = "Ambiance"; 
 $lang['clouds'] = "Clouds"; 
 $lang['chrome'] = "Chrome"; 
 $lang['clouds_midnight'] = "Clouds Midnight"; 
@@ -100,7 +121,6 @@ $lang['vibrant_ink'] = "Vibrant Ink";
 /* key binding */
 $lang['ace'] = "Ace"; 
 $lang['vim'] = "Vim"; 
-$lang['cobalt'] = "Cobalt"; 
 $lang['emacs'] = "EMacs";
 $lang['custom'] = "Custom";
 
@@ -115,7 +135,7 @@ $lang['140'] = "140 Chars";
 $lang['savesettings'] = "Save Preferences";
 $lang['settingssaved'] = "Your AceEditor settings have been saved";
 $lang['frontendsettingssaved'] = "Your AceEditor Frontend settings have been saved";
-$lang['postinstall'] = "AceEditor Successfully Installed! Set \"Modify Site Preferences\", \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module! If you're surfing with Safari, set the option \"Use uncompressed\".";
+$lang['postinstall'] = "AceEditor Successfully Installed! Set \"Modify Site Preferences\", \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module!";
 $lang['postuninstall'] = "AceEditor Successfully Uninstalled";
 $lang['really_uninstall'] = "Really? Are you sure you want to uninstall AceEditor? Think again!";
 $lang['needpermission'] = "Missing Permission!. Set \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module.";
@@ -128,70 +148,111 @@ $lang['help_param_action'] = "is used to determine the action of Module tag. Pos
 </ul>";
 $lang['help_param_modes'] = "is used with <code>{AceEditor action='head'}</code>. You can include multiple comma separated 'modes' that you will be using on your website. This should be included in your &lt;head&gt; of Template or Page specific Metadata. This will override you Preferences selected in Module Admin area. <br />Possible values are:
 <ul>
-	<li>javascript</li> 
-	<li>plain</li> 
-	<li>svg</li> 
-	<li>html</li>
-	<li>css</li>
-	<li>scss</li>
-	<li>coffee</li>
-	<li>json</li>
-	<li>python</li>
-	<li>ruby</li>
-	<li>perl</li>
-	<li>php</li>
-	<li>java</li>
-	<li>csharp</li>
-	<li>c_cpp</li>
-	<li>clojure</li>
-	<li>ocaml</li>
-	<li>textile</li>
-	<li>groovy</li>
-	<li>scala</li>
+    <li>javascript</li>
+    <li>plain</li>
+    <li>svg</li>
+    <li>html</li>
+    <li>css</li>
+    <li>scss</li>
+    <li>coffee</li>
+    <li>json</li>
+    <li>python</li>
+    <li>ruby</li>
+    <li>perl</li>
+    <li>php</li>
+    <li>java</li>
+    <li>csharp</li>
+    <li>c_cpp</li>
+    <li>clojure</li>
+    <li>coldfusion</li>
+    <li>diff</li>
+    <li>haxe</li>
+    <li>latex</li>
+    <li>lua</li>
+    <li>markdown</li>
+    <li>powershell</li>
+    <li>sql</li>
+    <li>pgsql</li>
+    <li>ocaml</li>
+    <li>textile</li>
+    <li>groovy</li>
+    <li>golang</li>
+    <li>jsx</li>
+    <li>less</li>
+    <li>liquid</li>
+    <li>scad</li>
+    <li>sh</li>
+    <li>xquery</li>
+    <li>yaml</li>
+    <li>scala</li>
 </ul>";
 $lang['help_param_themes'] = "is used with <code>{AceEditor action='head'}</code>. You can include multiple comma separated 'themes' that you will be using on your website. This should be included in your &lt;head&gt; of Template or Page specific Metadata. This will override you Preferences selected in Module Admin area. <br />Possible values are:
 <ul>
-	<li>clouds</li> 
-	<li>clouds_midnight</li> 
-	<li>cobalt</li> 
-	<li>crimson_editor</li>
-	<li>dawn</li>
-	<li>eclipse</li>
-	<li>idle_fingers</li>
-	<li>kr_theme</li>
-	<li>merbivore</li>
-	<li>merbivore_soft</li>
-	<li>mono_industrial</li>
-	<li>monokai</li>
-	<li>pastel_on_dark</li>
-	<li>solarized_dark</li>
-	<li>solarized_light</li>
-	<li>textmate</li>
-	<li>twilight</li>
-	<li>vibrant_ink</li>
+    <li>chrome</li>
+    <li>clouds</li>
+    <li>clouds_midnight</li>
+    <li>cobalt</li>
+    <li>crimson_editor</li>
+    <li>dawn</li>
+    <li>dreamweaver</li>
+    <li>eclipse</li>
+    <li>idle_fingers
+    <li>kr_theme</li>
+    <li>merbivore</li>
+    <li>merbivore_soft</li>
+    <li>mono_industrial</li>
+    <li>monokai</li>
+    <li>pastel_on_dark</li>
+    <li>solarized_dark</li>
+    <li>solarized_light</li>
+    <li>textmate</li>
+    <li>tomorrow</li>
+    <li>tomorrow_night</li>
+    <li>tomorrow_night_blue</li>
+    <li>tomorrow_night_bright</li>
+    <li>tomorrow_night_eighties</li>
+    <li>twilight</li>
+    <li>vibrant_ink</li>
 </ul>";
 $lang['help_param_mode'] = "is used within a page with <code>{AceEditor action='default'}</code> module tag. This specifies Syntaxhighlighter mode for specific code area. <br />Possible values are:
 <ul>
-	<li>javascript</li> 
-	<li>plain</li> 
-	<li>svg</li> 
-	<li>html</li>
-	<li>css</li>
-	<li>scss</li>
-	<li>coffee</li>
-	<li>json</li>
-	<li>python</li>
-	<li>ruby</li>
-	<li>perl</li>
-	<li>php</li>
-	<li>java</li>
-	<li>csharp</li>
-	<li>c_cpp</li>
-	<li>clojure</li>
-	<li>ocaml</li>
-	<li>textile</li>
-	<li>groovy</li>
-	<li>scala</li>
+    <li>javascript</li>
+    <li>plain</li>
+    <li>svg</li>
+    <li>html</li>
+    <li>css</li>
+    <li>scss</li>
+    <li>coffee</li>
+    <li>json</li>
+    <li>python</li>
+    <li>ruby</li>
+    <li>perl</li>
+    <li>php</li>
+    <li>java</li>
+    <li>csharp</li>
+    <li>c_cpp</li>
+    <li>clojure</li>
+    <li>coldfusion</li>
+    <li>diff</li>
+    <li>haxe</li>
+    <li>latex</li>
+    <li>lua</li>
+    <li>markdown</li>
+    <li>powershell</li>
+    <li>sql</li>
+    <li>pgsql</li>
+    <li>ocaml</li>
+    <li>textile</li>
+    <li>groovy</li>
+    <li>golang</li>
+    <li>jsx</li>
+    <li>less</li>
+    <li>liquid</li>
+    <li>scad</li>
+    <li>sh</li>
+    <li>xquery</li>
+    <li>yaml</li>
+    <li>scala</li>
 </ul>";
 $lang['help_param_theme'] = "is used within a page with <code>{AceEditor action='default'}</code> module tag. This specifies Syntaxhighlighter theme for specific code area. <br />Possible values are:
 <ul>
@@ -233,7 +294,7 @@ This is the same license used by Firefox. This license is friendly to all kinds 
 After AceEditor was installed go to \"My Preferences &raquo; User Preferences\" and choose AceEditor as your Syntaxhighlighter of choice from \"Select syntax highlighter to use:\" Dropdown.<br />
 Make sure you have 'Modify Site Preferences' Permsission.</p>
 <h3>Settings</h3>
-<p>You can change default Settings and Themes in \"Extensions &raquo; AceEditor\"</p>";
+<p>You can change default Settings and Themes in \"My Preferences &raquo; AceEditor\"</p>";
 
 $lang['help_keyboardshortcuts_title'] = "Keyboard Shortcuts";
 $lang['help_keyboardshortcuts_content'] = '
@@ -529,34 +590,18 @@ $lang['help_frontend_content'] = "<p>This Module and Ace Script can also be used
 To make it work you have to include jQuery Framework, for example using CMSMS {cms_jquery} tag and as well include {AceEditor} in your page twice. First add the module tag in your &lt;head&gt; section of Template or in &quot;Page Specific Metdata&quot; field of your Content page, like {AceEditor action='head'} and another call to specify which area should be highlighted, for example {AceEditor divid='foo'}, which would target a page element with id <em>foo</em>.</p>
 <h3>So how do you use it?</h3>
 <p>First include jQuery and Module tag in your Page &lt;head&gt; area, for example in &quot;Page Specific Metdata&quot;:</p>
-	<pre>
-	{cms_jquery}
-	{AceEditor action='head'}
-	</pre>
+<pre>
+{cms_jquery}
+{AceEditor action='head'}
+</pre>
 <p>This includes needed scripts for Ace Syntaxhighlighter to work.<br />
 In Modules Admin interface you can select default settings for your 'head' action or use parameter modes='html,javascript' and themes='textmate' which would override selected Preferences.</p>
 <p>Now when you have needed scripts included, one more Module tag call is needed (for example in your Content Editor area) to specify which area of your Page should be highlighted.</p>
-	<pre>
-	{AceEditor divid='some-id'}
-	</pre>
+<pre>
+{AceEditor divid='some-id'}
+</pre>
 <p>This tag includes needed Script and Style that is used to Highlight selected element with specified id.<br />
 All you need then is write your Code that you want to Highlight and wrap it inside an elemen like &lt;div&gt; with specified id.</p>";
-$lang['help_frontend_sample'] = '
-<pre id="some-id">
-&lt;html&gt;
-     &lt;head&gt;
-     &lt;style type="text/css"&gt;
-         .text-layer {
-             font-family: Monaco, "Courier New", monospace;
-             font-size: 12px;
-             cursor: text;
-         }
-     &lt;/style&gt;
-     &lt;/head&gt;
-     &lt;body&gt;
-         &lt;h1 style="color:red"&gt;Juhu Kinners&lt;/h1&gt;
-     &lt;/body&gt; &lt;/html&gt;
-</pre>';
 
 $lang['help_about_title'] = "About";
 $lang['help_about_text'] = '<h3>Support</h3>
@@ -567,6 +612,7 @@ $lang['help_about_text'] = '<h3>Support</h3>
 	<h3>Team</h3>
 	<ul>
 		<li>Goran Ilic (uniqu3) g.ilic@i-arts.eu <br />www.ich-mach-das.at</li>	
+		<li>Tapio Löytty(Stikki) tapsa@orange-media.fi <br />www.orange-media.fi/</li>		
 		<li>Robert Campbell (calguy1000) calguy1000@cmsmadesimple.org  <br />www.calguy1000.com</li>		
 		<li>Jonathan Schmid (Foaly*) hi@jonathanschmid.de <br />www.jonathanschmid.de</li>
 	</ul>
@@ -602,13 +648,32 @@ $lang['changelog'] = "
     <li>Added ability to change AceEditor preferences per user</li>
     <li>Moved module from extenions to myprefs</li>
 </ul>
+<h3>Version 0.2.3.1</h3>
+<ul>
+    <li>Mode preference bugfix</li>
+</ul>
+<h3>Version 0.2.4.1</h3>
+<ul>
+    <li>Updated to latest Ace build</li>
+    <li>Added Toolbar</li>
+</ul>
+<h3>Version 0.2.4.2</h3>
+<ul>
+    <li>Minor bugfix, \$mod could colide with other modules</li>
+    <li>Minor bugfix to toolbar buttons when multiple Ace instances are loaded</li>
+</ul>
+<h3>Version 0.2.5</h3>
+<ul>
+    <li>Fix with html encoding</li>
+    <li>Updated Ace framework scripts</li>
+</ul>
 <h3>Roadmap</h3>
 <ul>
-	<li><del>Add Frontend Syntaxhighlighting</del></li>
-	<li><del>Add Fullscreenmode</del></li>
-	<li><del>Add Keybinding (CTRL+S)</del></li>
-	<li>Add Editor behavior (Vim, EMacs)</li>
-	<li>Maybe add Toolbar</li>
+    <li><del>Add Frontend Syntaxhighlighting</del></li>
+    <li><del>Add Fullscreenmode</del></li>
+    <li><del>Add Keybinding (CTRL+S)</del></li>
+    <li><del>Add Editor behavior (Vim, EMacs)</del></li>
+    <li><del>Maybe add Toolbar</del></li>
 </ul>";
 
 ?>

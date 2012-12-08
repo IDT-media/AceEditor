@@ -8,8 +8,7 @@ jQuery(document).ready(function(){ldelim}
 		editor.setTheme('ace/theme/{$theme}');
 {/if}
 {if isset($mode)}
-		var theMode = require('ace/mode/{$mode}').Mode;
-  		editor.getSession().setMode(new theMode);
+		editor.getSession().setMode('ace/mode/{$mode}');
 {/if}
   		editor.renderer.setShowPrintMargin(false);
   		editor.getSession().setValue(txt);

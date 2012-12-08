@@ -35,29 +35,34 @@
 # - Chat with developers on the #cms IRC channel
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
+if (!is_object(cmsms()))
+	exit;
 
 // initialize
-$this->divid = '';
+$this->divid  = '';
+// don't need this any more it's danled with ace.js
+/*
 // selected themes
 $this->themes = get_parameter_value($params, 'themes', $this->GetPreference('frontend_theme'));
 // selected modes
-$this->modes = get_parameter_value($params, 'modes', $this->GetPreference('frontend_mode'));
+$this->modes  = get_parameter_value($params, 'modes', $this->GetPreference('frontend_mode'));
 
-	if (isset($params['divid']))
-		$this->divid = trim($params['divid']);
-	if (!is_array($this->mode)) {
-		$this->modes = explode(',', $this->modes);
-	}
-	if (isset($this->themes) && !is_array($this->themes)) {
-		$this->themes = explode(',', $this->themes);
-	}
-	if (isset($this->themes)) {
-		$smarty->assign('themes', $this->themes);
-	}
+if (isset($params['divid'])) {
+	$this->divid = trim($params['divid']);
+}
+if (!is_array($this->mode)) {
+	$this->modes = explode(',', $this->modes);
+}
+if (isset($this->themes) && !is_array($this->themes)) {
+	$this->themes = explode(',', $this->themes);
+}
+if (isset($this->themes)) {
+	$smarty->assign('themes', $this->themes);
+}
 
-	$smarty->assign('modes', $this->modes);
-	$smarty->assign('ace_url', $this->GetModuleURLPath());
-	// output template
-	echo $this->ProcessTemplate('orig_head.js');
+$smarty->assign('modes', $this->modes);
+ */
+$smarty->assign('ace_url', $this->GetModuleURLPath());
+// output template
+echo $this->ProcessTemplate('orig_head.tpl');
 ?>

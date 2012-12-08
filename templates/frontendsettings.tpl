@@ -1,13 +1,14 @@
 {strip}
 {$startform}
+{* NO NEED FOR THIS ANYMORE
 <fieldset>
 	<legend>
-		{$settingstext}
+		{$ace_mod->Lang('frontend_head_settings')}
 	</legend>
-	<p>{$head_description}</p>
+	<p>{$ace_mod->Lang('head_description')}</p>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$frontend_syntax_mode}
+			{$ace_mod->Lang('syntax_mode')}
 		</p>
 		<p class="pageinput">
 			{$frontend_syntax_modeinput}
@@ -15,21 +16,22 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$themetext}
+			{$ace_mod->Lang('themes')}
 		</p>
 		<p class="pageinput">
 			{$frontend_themeinput}
 		</p>
 	</div>
 </fieldset>
+*}
 <fieldset>	
 	<legend>
-		{$syntax_settingstext}
+		{$ace_mod->Lang('frontend_syntaxarea_settings')}
 	</legend>
-	<p>{$content_description}</p>			
+	<p>{$ace_mod->Lang('content_description')}</p>			
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$width_title}
+			{$ace_mod->Lang('frontend_width_title')}
 		</p>
 		<p class="pageinput">
 			{$width_input}
@@ -37,7 +39,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$height_title}
+			{$ace_mod->Lang('frontend_height_title')}
 		</p>
 		<p class="pageinput">
 			{$height_input}
@@ -45,7 +47,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$frontend_syntax_mode}
+			{$ace_mod->Lang('syntax_mode')}
 		</p>
 		<p class="pageinput">
 			{$frontend_syntaxarea_modeinput}
@@ -53,7 +55,7 @@
 	</div>		
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$themetext}
+			{$ace_mod->Lang('themes')}
 		</p>
 		<p class="pageinput">
 			{$themeinput}
@@ -61,7 +63,7 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$fontsizetext}
+			{$ace_mod->Lang('font_size')}
 		</p>
 		<p class="pageinput">
 			{$fontsizeinput}

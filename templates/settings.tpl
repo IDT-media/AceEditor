@@ -2,11 +2,11 @@
 {$startform}
 <fieldset>
 	<legend>
-		{$settingstext}
+		{$ace_mod->Lang('settings_tab')}
 	</legend>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$width_title}
+			{$ace_mod->Lang('width_title')}
 		</p>
 		<p class="pageinput">
 			{$width_input}
@@ -14,7 +14,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$height_title}
+			{$ace_mod->Lang('height_title')}
 		</p>
 		<p class="pageinput">
 			{$height_input}
@@ -22,23 +22,15 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$enable_ietext}
+			{$ace_mod->Lang('enable_ie')}
 		</p>
 		<p class="pageinput">
-			{$enable_ieinput} {$enable_iedescr}
+			{$enable_ieinput} {$ace_mod->Lang('enable_iedescription')}
 		</p>
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$use_uncompressed_title}
-		</p>
-		<p class="pageinput">
-			{$use_uncompressed_input} {$use_uncompressed_text}
-		</p>
-	</div>
-	<div class="pageoverflow">
-		<p class="pagetext">
-			{$syntax_mode}
+			{$ace_mod->Lang('syntax_mode')}
 		</p>
 		<p class="pageinput">
 			{$syntax_modeinput}
@@ -46,7 +38,7 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$themetext}
+			{$ace_mod->Lang('themes')}
 		</p>
 		<p class="pageinput">
 			{$themeinput}
@@ -54,7 +46,7 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$fontsizetext}
+			{$ace_mod->Lang('font_size')}
 		</p>
 		<p class="pageinput">
 			{$fontsizeinput}
@@ -62,7 +54,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$full_linetext}
+			{$ace_mod->Lang('full_line')}
 		</p>
 		<p class="pageinput">
 			{$full_lineinput}
@@ -70,7 +62,7 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$highlight_activetext}
+			{$ace_mod->Lang('highlight_active')}
 		</p>
 		<p class="pageinput">
 			{$highlight_activeinput}
@@ -78,7 +70,7 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$show_invisiblestext}
+			{$ace_mod->Lang('show_invisibles')}
 		</p>
 		<p class="pageinput">
 			{$show_invisiblesinput}
@@ -86,25 +78,15 @@
 	</div>
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$persistent_hscrolltext}
+			{$ace_mod->Lang('persistent_hscroll')}
 		</p>
 		<p class="pageinput">
 			{$persistent_hscrollinput}
 		</p>
 	</div>
-	{*
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$key_bindingtext}
-		</p>
-		<p class="pageinput">
-			{$key_bindinginput}
-		</p>
-	</div>
-	*}	
-	<div class="pageoverflow">
-		<p class="pagetext">
-			{$soft_wraptext}
+			{$ace_mod->Lang('soft_wrap')}
 		</p>
 		<p class="pageinput">
 			{$soft_wrapinput}
@@ -112,7 +94,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$show_guttertext}
+			{$ace_mod->Lang('show_gutter')}
 		</p>
 		<p class="pageinput">
 			{$show_gutterinput}
@@ -120,7 +102,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$print_margintext}
+			{$ace_mod->Lang('print_margin')}
 		</p>
 		<p class="pageinput">
 			{$print_margininput}
@@ -128,7 +110,7 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$soft_tabtext}
+			{$ace_mod->Lang('soft_tab')}
 		</p>
 		<p class="pageinput">
 			{$soft_tabinput}
@@ -136,22 +118,20 @@
 	</div>	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$highlight_selectedtext}
+			{$ace_mod->Lang('highlight_selected')}
 		</p>
 		<p class="pageinput">
 			{$highlight_selectedinput}
 		</p>
 	</div>
-	{*	
 	<div class="pageoverflow">
 		<p class="pagetext">
-			{$enable_behaviorstext}
+			{$ace_mod->Lang('enable_behaviors')}
 		</p>
 		<p class="pageinput">
-			{$enable_behaviorsinput}
+			{$behaviours_input}
 		</p>
-	</div>	
-	*}						
+	</div>					
 	<div class="pageoverflow">
 		<p class="pagetext">
 			&nbsp;
@@ -162,7 +142,7 @@
 	</div>
 </fieldset>
 <fieldset>
-	<legend>{$testareatext}</legend>
+	<legend>{$ace_mod->Lang('testareatext')}</legend>
 	<div class="pageoverflow">
 		<p class="pageinput">
 			{$testarea}

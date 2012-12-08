@@ -36,7 +36,28 @@
 	<div id="frontend_c">
 		<div class="pageoverflow">
 		{$help_frontend_content}
-		<pre>{$help_frontend_sample}</pre>
+		<pre>
+		<code>
+		{literal}
+&lt;pre id="some-id"&gt
+&lt;html&gt;
+&lt;head&gt;
+	&lt;style type="text/css"&gt;
+	.text-layer {
+		font-family: Monaco, "Courier New", monospace;
+		font-size: 12px;
+		cursor: text;
+	}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1 style="color:red"&gt;YES!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/pre&gt;
+		{/literal}
+		</code>
+		</pre>
 		</div>
 	</div>
 	<div id="about_c">

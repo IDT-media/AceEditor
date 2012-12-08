@@ -35,6 +35,8 @@
 # - Chat with developers on the #cms IRC channel
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
-  $this->RemovePreference();
+if (!is_object(cmsms()))
+	exit;
+
+$this->RemovePreference();
 ?>
