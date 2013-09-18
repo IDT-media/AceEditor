@@ -44,8 +44,6 @@ $smarty->assign('endform', $this->CreateFormEnd());
 
 $smarty->assign('width_input', $this->CreateInputText($id, 'width', cms_userprefs::get_for_user($userid, $this->GetName() . '_width', '80'), 10, 255));
 $smarty->assign('height_input', $this->CreateInputText($id, 'height', cms_userprefs::get_for_user($userid, $this->GetName() . '_height', '40'), 10, 255));
-// create a IE pref, DONT WANT TO SEE A BR FOR THIS SHIT!
-$smarty->assign('enable_ieinput', $this->CreateInputCheckbox($id, 'enable_ie', 1, cms_userprefs::get_for_user($userid, $this->GetName() . '_enable_ie', 0)));
 
 /* mode dropdown */
 $modes = array(
@@ -91,7 +89,7 @@ $smarty->assign('syntax_modeinput', $this->CreateInputDropdown($id, 'mode', $mod
 
 /* themes */
 $themes = array(
-    $this->Lang('ambiance') => 'ambiance',
+	$this->Lang('ambiance') => 'ambiance',
 	$this->Lang('chrome') => 'chrome',
 	$this->Lang('clouds') => 'clouds',
 	$this->Lang('clouds_midnight') => 'clouds_midnight',

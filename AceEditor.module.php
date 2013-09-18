@@ -44,12 +44,12 @@ class AceEditor extends CMSModule
 	protected $noeditors       = 0;
 	public $headerinfosent     = false;
 	private $_htmlactive       = false;
-    private $_plainactive      = false;
+	private $_plainactive      = false;
 	private $_javascriptactive = false;
 	private $_cssactive        = false;
 	private $_phpactive        = false;
-    private $_xmlactive        = false;
-    private $_jsonactive       = false;
+	private $_xmlactive        = false;
+	private $_jsonactive       = false;
 	private $_defaultactive    = false;
 
 	#---------------------
@@ -68,7 +68,7 @@ class AceEditor extends CMSModule
 
 	public function GetVersion()
 	{
-		return '0.2.5';
+		return '0.2.6';
 	}
 
 	public function GetHelp()
@@ -139,17 +139,9 @@ class AceEditor extends CMSModule
 		
 	}
 
-	public function SetParameters()
-	{
-		if (version_compare(CMS_VERSION, '1.10') < 0) {
-			$this->InitializeFrontend();
-			$this->InitializeAdmin();
-		}
-	}
-
 	public function LazyLoadFrontend()
 	{
-		return false; // module plugin is broken is unknown in 1.11 if set to true
+		return true; 
 	}
 
 	public function LazyLoadAdmin()
@@ -179,15 +171,9 @@ class AceEditor extends CMSModule
 
 	public function MinimumCMSVersion()
 	{
-		return "1.10";
+		return "1.11";
 	}
 
-	/*
-	public function MaximumCMSVersion()
-	{
-		return "1.11.9";
-	}
-    */
 	public function InstallPostMessage()
 	{
 		return $this->Lang('postinstall');
@@ -252,7 +238,7 @@ class AceEditor extends CMSModule
 		$this->syntaxactive = true;
 		$smarty             = $this->smarty;
 		$config             = cmsms()->GetConfig();
-        $smarty->assign_by_ref('ace_mod', $this);
+		$smarty->assign_by_ref('ace_mod', $this);
 		$smarty->assign('textareaid', "ace_editor" . $this->noeditors);
 		$smarty->assign('editorid', "ace-editor" . $this->noeditors);
 		$smarty->assign('textareaname', $name);
@@ -260,6 +246,7 @@ class AceEditor extends CMSModule
 		$smarty->assign('ace_id', $this->noeditors);
 		
 		// Assign prefs
+		/*
 		$smarty->assign('width', $this->AceGetPreference('width', '80'));
 		$smarty->assign('height', $this->AceGetPreference('height', '40'));
 		$smarty->assign('theme', $this->AceGetPreference('theme'));
@@ -271,7 +258,7 @@ class AceEditor extends CMSModule
 		} else {
 			$smarty->assign('enable_ie', 'false');
 		}
-		
+		*/
 		if ($this->AceGetPreference('full_line')) {
 			$smarty->assign('full_line', 'line');
 		} else {
@@ -313,19 +300,19 @@ class AceEditor extends CMSModule
 		} else {
 			$smarty->assign('soft_tab', 'false');
 		}
-        
-        if ($this->AceGetPreference('enable_behaviors')) {
-            $smarty->assign('enable_behaviors', 'true');
-        } else {
-            $smarty->assign('enable_behaviors', 'false');
-        }
-		
+
+		if ($this->AceGetPreference('enable_behaviors')) {
+			$smarty->assign('enable_behaviors', 'true');
+		} else {
+			$smarty->assign('enable_behaviors', 'false');
+		}
+
 		if ($this->AceGetPreference('highlight_selected')) {
 			$smarty->assign('highlight_selected', 'true');
 		} else {
 			$smarty->assign('highlight_selected', 'false');
 		}
-        // TODO could do all the switching in here, list all modes, then syntax could be auto set without choosing one in preferences 
+		// TODO: could do all the switching in here, list all modes, then syntax could be auto set without choosing one in preferences 
 		switch ($syntax) {
 			case 'html':
 				$smarty->assign('mode', 'html');
@@ -344,24 +331,24 @@ class AceEditor extends CMSModule
 				$smarty->assign('mode', 'php');
 				$this->_phpactive = true;
 				break;
-            case 'plain':
-                $smarty->assign('mode', 'plain');
-                $this->_plainactive = true;
-                break;  
-            case 'xml':
-                $smarty->assign('mode', 'xml');
-                $this->_xmlactive = true;
-                break; 
-            case 'json':
-                $smarty->assign('mode', 'json');
-                $this->_jsonactive = true;
-                break;                                                
+			case 'plain':
+				$smarty->assign('mode', 'plain');
+				$this->_plainactive = true;
+				break;
+			case 'xml':
+				$smarty->assign('mode', 'xml');
+				$this->_xmlactive = true;
+				break; 
+			case 'json':
+				$smarty->assign('mode', 'json');
+				$this->_jsonactive = true;
+				break;
 			default:
 				$smarty->assign('mode', $this->AceGetPreference('mode'));
 				$this->_defaultactive = true;
 				break;
 		}
-		
+
 		$textarea = $this->ProcessTemplate('ace.tpl');
 		$this->noeditors++;
 		
@@ -370,33 +357,30 @@ class AceEditor extends CMSModule
 
 	public function SyntaxGenerateHeader($htmlresult = '')
 	{
-	    $header = '';
-	    if (version_compare(CMS_VERSION, '1.11') < 0) {
-            $header .= '
-                <link rel="stylesheet" type="text/css" href="' . $this->GetModuleURLPath() . '/css/jquery-ui-1.8.21.custom.css" />';
-        }
-		$header .= '
+
+		$header = '
 		<link rel="stylesheet" type="text/css" href="' . $this->GetModuleURLPath() . '/css/style.css" />
-		<script src="' . $this->GetModuleURLPath() . '/ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script src="' . $this->GetModuleURLPath() . '/js/functions.js"></script>
+		<script src="' . $this->GetModuleURLPath() . '/ace/src/ace.js"></script>
 		<script src="' . $this->GetModuleURLPath() . '/ace/src/keybinding-vim.js"></script>
-        <script src="' . $this->GetModuleURLPath() . '/ace/src/keybinding-emacs.js"></script>';
+		<script src="' . $this->GetModuleURLPath() . '/ace/src/keybinding-emacs.js"></script>';
 		return $header;
 	}
-
+/*
 	public function GetHeaderHTML()
 	{
 		$incdir = $this->GetModuleURLPath();
 		$tmpl   = <<<EOT
-    <script type="text/javascript" src="{$incdir}/js/functions.js"></script>
+	<script type="text/javascript" src="{$incdir}/js/functions.js"></script>
 EOT;
 		return $this->ProcessTemplateFromData($tmpl);
 	}
-
+*/
 	#---------------------
 	# Module methods
 	#--------------------- 
 
-	final private function AceGetPreference($name)
+	final public function AceGetPreference($name)
 	{
 		$userid = get_userid();
 		$result = cms_userprefs::get_for_user($userid, $this->GetName() . '_' . $name);

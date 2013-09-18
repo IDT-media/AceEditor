@@ -2,8 +2,9 @@
 	border-radius: 4px 4px 0 0;
 	display: inline-block;
 	padding: 0;
-    border: 5px solid #ddd; 	
+	border: 5px solid #ddd;
 }
+
 .ace_wrapper textarea {
 	display: block;
 	border-radius: 0;
@@ -11,32 +12,35 @@
 	padding-left: 0;
 	padding-right: 0;
 }
+
 .ace_toolbar.ui-buttonset {
-    background: #ddd; 
-	background: -moz-linear-gradient(top, #dddddd 0%, #f4f4f4 41%, #dddddd 100%); 
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(41%,#f4f4f4), color-stop(100%,#dddddd)); 
-	background: -webkit-linear-gradient(top, #dddddd 0%,#f4f4f4 41%,#dddddd 100%); 
-	background: -o-linear-gradient(top, #dddddd 0%,#f4f4f4 41%,#dddddd 100%); 
-    padding: 4px;
-    margin: 0;   
-    border-bottom: 5px solid #ddd; 
-    display: block;
+	background: #ddd;
+	background: -moz-linear-gradient(top, #dddddd 0%, #f4f4f4 41%, #dddddd 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(41%,#f4f4f4), color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(top, #dddddd 0%,#f4f4f4 41%,#dddddd 100%);
+	background: -o-linear-gradient(top, #dddddd 0%,#f4f4f4 41%,#dddddd 100%);
+	padding: 4px;
+	margin: 0;
+	border-bottom: 5px solid #ddd;
+	display: block;
 }
+
 .ace_toolbar label {
 	padding: 0 8px;
 	font-size: 11px;
 }
-.ace_toolbar input[type="text"],
-.ace_toolbar input {
+
+.ace_toolbar input[type="text"], .ace_toolbar input {
 	height: auto;
 	margin: 0;
 	min-width: 1%;
 	width: 40px;
 }
-.ace_toolbar input[type="text"].wide,
-.ace_toolbar input.wide {
+
+.ace_toolbar input[type="text"].wide, .ace_toolbar input.wide {
 	width: 150px;
 }
+
 .ace_toolbar .ui-button {
 	margin: 0;
 	padding: 0;
@@ -44,7 +48,28 @@
 	font-weight: bold;
 	line-height: 0;
 }
+
 label.ui-button {
 	padding: 0;
 	margin: 0;
+}
+
+.ace_wrapper {
+	background: #fefefe;
+}
+
+.ace_wrapper textarea {
+	width: 100%;
+}
+
+.ace_editor_textarea {
+	position: relative;
+}
+
+.ace_editor_content.fullscreen {
+	position: fixed;
+	z-index: 9999;
+	margin: 0;
+	left: 0;
+	top: 0;
 }
