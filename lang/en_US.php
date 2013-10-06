@@ -6,22 +6,16 @@ $lang['admindescription'] = "AceEditor is a Syntaxhighlighter module using <stro
 /* --- Tabs --- */
 $lang['settings_tab'] = "Preferences";
 $lang['frontendsettings_tab'] = "Frontend Preferences";
-$lang['frontend_head_settings'] = "Frontend Head Preferences";
 $lang['frontend_syntaxarea_settings'] = "Frontend Syntaxarea Preferences";
-$lang['head_description'] = "These preferences are used for default settings of Ace scripts that should be included in page <code>&lt;head&gt;</code> when calling <code>{AceEditor action='head'}</code> from Page Specific Metadata or Template.";
-$lang['content_description'] = "These preferences are used for default settings of Syntaxhighlighting area when calling <code>{AceEditor divid='editor'}</code> tag within a Page.";
-$lang['syntaxareadescription'] = "These preferences are used for default settings of Ace behavior when calling <code>{AceEditor divid='foo'}</code> from a Page or Template";
+$lang['content_description'] = "These preferences are used for default settings of Syntaxhighlighting area when calling <code>{ace_code divid='editor'} {/ace_code}</code> block plugin within a Page.";
 
 /* --- Settings labels --- */
-$lang['example_document'] = "Document";
-$lang['width_title'] = "Editor width (in em)";
-$lang['height_title'] = "Editor height (in em)";
-$lang['enable_ie'] = "Enable Internet Explorer";
-$lang['enable_iedescription'] = "Ace Syntaxhighlighter does not behave properly when using Internet Explorer. Enable this at your own risk!";
-$lang['frontend_width_title'] = "Frontend Syntaxarea width (in px)";
-$lang['frontend_height_title'] = "Frontend Syntaxarea height (in px)";
-$lang['syntax_mode'] = "Mode";
-$lang['themes'] = "Theme";
+$lang['width_title'] = "Editor width";
+$lang['height_title'] = "Editor height";
+$lang['frontend_width_title'] = "Frontend Syntaxarea width";
+$lang['frontend_height_title'] = "Frontend Syntaxarea height";
+$lang['syntax_mode'] = "Select Highlighter Mode";
+$lang['themes'] = "Select Highlighter Theme";
 $lang['font_size'] = "Font Size";
 $lang['full_line'] = "Full Line Selection";
 $lang['highlight_active'] = "Highlight Active Line";
@@ -30,11 +24,14 @@ $lang['persistent_hscroll'] = "Persitent HScroll";
 $lang['key_binding'] = "Key Binding";
 $lang['soft_wrap'] = "Soft Wrap";
 $lang['show_gutter'] = "Show Gutter";
+$lang['wrap_line'] = "Wrap Lines";
 $lang['print_margin'] = "Show Print Margin";
-$lang['soft_tab'] = "Use Soft Tab";
+$lang['soft_tab'] = "Use Soft Tab (enables spaces as tabs)";
+$lang['tab_size'] = "Select Tab size";
 $lang['highlight_selected'] = "Highlight selected word";
 $lang['enable_behaviors'] = "Enable Behaviours";
 $lang['testareatext'] = "Preview";
+$lang['auto_height'] = "Auto (Editor starts with preset height and will auto expand based on content)";
 
 /* --- Toolbar --- */
 $lang['on'] = 'On';
@@ -42,56 +39,137 @@ $lang['off'] = 'Off';
 $lang['line'] = 'Line';
 $lang['column'] = 'Column';
 $lang['current_line'] = 'Current line';
+$lang['current_token'] = 'Current token';
 $lang['total_lines'] = 'Total lines';
 $lang['go_line'] = 'Go to line';
 $lang['keybindings'] = 'Keybindings';
 $lang['ace'] = 'Ace';
 $lang['vim'] = 'Vim';
 $lang['emacs'] = 'EMacs';
+$lang['full_screen'] = "Full Screen";
+$lang['search_document'] = "Search (press Enter)";
+$lang['replace_with'] = "Replace with (press Enter)";
+$lang['search_options'] = "Search Options";
+$lang['search_settings'] = "Search Settings";
+$lang['highlighter_on'] = 'Turn Highlighter On';
+$lang['highlighter_off'] = 'Turn Highlighter Off';
+$lang['replace_option'] = 'Replace';
+$lang['replaceall_option'] = 'Replace all';
+$lang['case_sensitive'] = 'Case Sensitive Search';
+$lang['whole_word'] = 'Whole Word Search';
+$lang['regexp'] = 'Regular Expression Search';
+$lang['search_any'] = 'Search Anything';
 
 /* --- Select options --- */
 
 /* languages */
-$lang['js'] = "JavaScript";
-$lang['plain'] = "Plain Text";
-$lang['svg'] = "SVG";
-$lang['html'] = "HTML";
-$lang['css'] = "CSS";
-$lang['scss'] = "SCSS";
-$lang['coffee'] = "CoffeeScript";
-$lang['json'] = "JSON";
-$lang['python'] = "Python";
-$lang['ruby'] = "Ruby";
-$lang['perl'] = "Perl";
-$lang['php'] = "PHP";
-$lang['java'] = "Java";
-$lang['csharp'] = "C#";
-$lang['c_cpp'] = "C++";
+$lang['abap'] = "ABAP";
+$lang['ada'] = "ADA";
+$lang['actionscript'] = "ActionScript";
+$lang['asciidoc'] = "AsciiDoc";
+$lang['assembly_x86'] = "Assembly_86";
+$lang['autohotkey'] = "AutoHotKey";
+$lang['batchfile'] = "BatchFile";
+$lang['c9search'] = "C9Search";
+$lang['c_cpp'] = "C/C++";
 $lang['clojure'] = "Clojure";
-$lang['coldfusion'] = "Coldfusion";
-$lang['haxe'] = "Haxe";
-$lang['latex'] = "Latex";
-$lang['lua'] = "Lua";
-$lang['markdown'] = "Markdown";
-$lang['powershell'] = "PowerShell";
-$lang['sql'] = "SQL";
-$lang['pgsql'] = "pgSQL";
-$lang['ocaml'] = "OCaml";
-$lang['textile'] = "Textile";
-$lang['groovy'] = "Groovy";
-$lang['scala'] = "Scala";
+$lang['cobol'] = "Cobol";
+$lang['coffee'] = "CoffeeScript";
+$lang['coldfusion'] = "ColdFusion";
+$lang['csharp'] = "C#";
+$lang['css'] = "CSS";
+$lang['curly'] = "Curly";
+$lang['d'] = "D";
+$lang['dart'] = "Dart";
 $lang['diff'] = "Diff";
-$lang['golang'] = "GO";
-$lang['yaml'] = "YAML";
-$lang['less'] = "LESS";
-$lang['scad'] = "OpenSCAD";
-$lang['sh'] = "SH";
-$lang['xquery'] = "XQuery";
-$lang['liquid'] = "Liquid";
+$lang['django'] = "Django";
+$lang['dot'] = "Dot";
+$lang['erlang'] = "Erlang";
+$lang['ejs'] = "EJS";
+$lang['forth'] = "Forth";
+$lang['ftl'] = "FreeMarker";
+$lang['glsl'] = "Glsl";
+$lang['golang'] = "Go";
+$lang['groovy'] = "Groovy";
+$lang['haml'] = "HAML";
+$lang['haskell'] = "Haskell";
+$lang['haxe'] = "haXe";
+$lang['html'] = "HTML";
+$lang['html_completions'] = "HTML (Completions)";
+$lang['html_ruby'] = "HTML (Ruby)";
+$lang['ini'] = "Ini";
+$lang['jade'] = "Jade";
+$lang['java'] = "Java";
+$lang['javascript'] = "JavaScript";
+$lang['json'] = "JSON";
+$lang['jsoniq'] = "JSONiq";
+$lang['jsp'] = "JSP";
 $lang['jsx'] = "JSX";
+$lang['julia'] = "Julia";
+$lang['latex'] = "LaTeX";
+$lang['less'] = "LESS";
+$lang['liquid'] = "Liquid";
+$lang['lisp'] = "Lisp";
+$lang['livescript'] = "LiveScript";
+$lang['logiql'] = "LogiQL";
+$lang['lsl'] = "LSL";
+$lang['lua'] = "Lua";
+$lang['luahtml'] = "LuaHTML";
+$lang['luapage'] = "LuaPage";
+$lang['lucene'] = "Lucene";
+$lang['makefile'] = "Makefile";
+$lang['matlab'] = "MATLAB";
+$lang['markdown'] = "Markdown";
+$lang['mysql'] = "MYSQL";
+$lang['mushcode'] = "MUSHCode";
+$lang['mushcode_high_rules'] = "MUSHCode High Rules";
+$lang['nix'] = "Nix";
+$lang['objectivec'] = "Objective-C";
+$lang['ocaml'] = "OCaml";
+$lang['pascal'] = "Pascal";
+$lang['perl'] = "Perl";
+$lang['pgsql'] = "pgSQL";
+$lang['php'] = "PHP";
+$lang['plain_text'] = "Plain Text";
+$lang['powershell'] = "Powershell";
+$lang['prolog'] = "Prolog";
+$lang['properties'] = "Properties";
+$lang['protobuf'] = "Protobuf";
+$lang['python'] = "Python";
+$lang['r'] = "R";
+$lang['rdoc'] = "RDoc";
+$lang['rhtml'] = "RHTML";
+$lang['ruby'] = "Ruby";
+$lang['rust'] = "Rust";
+$lang['sass'] = "SASS";
+$lang['scad'] = "SCAD";
+$lang['scala'] = "Scala";
+$lang['scheme'] = "Scheme";
+$lang['scss'] = "SCSS";
+$lang['sh'] = "SH";
+$lang['smarty'] = "Smarty (HTML)";
+$lang['snippets'] = "snippets";
+$lang['sql'] = "SQL";
+$lang['stylus'] = "Stylus";
+$lang['svg'] = "SVG";
+$lang['tcl'] = "Tcl";
+$lang['tex'] = "Tex";
+$lang['text'] = "Text";
+$lang['textile'] = "Textile";
+$lang['tmsnippet'] = "TMSnippet";
+$lang['toml'] = "Toml";
+$lang['twig'] = "Twig";
+$lang['typescript'] = "Typescript";
+$lang['vbscript'] = "VBScript";
+$lang['velocity'] = "Velocity";
+$lang['verilog'] = "Verilog";
+$lang['xml'] = "XML";
+$lang['xquery'] = "XQuery";
+$lang['yaml'] = "YAML";
 
 /* themes */
 $lang['ambiance'] = "Ambiance"; 
+$lang['chaos'] = "Chaos"; 
 $lang['clouds'] = "Clouds"; 
 $lang['chrome'] = "Chrome"; 
 $lang['clouds_midnight'] = "Clouds Midnight"; 
@@ -100,8 +178,10 @@ $lang['crimson_editor'] = "Crimson Editor";
 $lang['dawn'] = "Dawn";
 $lang['dreamweaver'] = "Dreamweaver"; 
 $lang['eclipse'] = "Eclipse";
+$lang['github'] = "GitHub"; 
 $lang['idle_fingers'] = "idleFingers";
-$lang['kr_theme'] = "krTheme";
+$lang['kr'] = "krTheme"; 
+$lang['kr_theme'] = "krTheme dark";
 $lang['merbivore'] = "Merbivore";
 $lang['merbivore_soft'] = "Merbivore Soft";
 $lang['mono_industrial'] = "Mono Industrial";
@@ -109,6 +189,7 @@ $lang['monokai'] = "Monokai";
 $lang['pastel_on_dark'] = "Pastel on dark";
 $lang['solarized_dark'] = "Solarized Dark";
 $lang['solarized_light'] = "Solarized Light";
+$lang['terminal'] = "Terminal"; 
 $lang['textmate'] = "TextMate";
 $lang['tomorrow'] = "Tomorrow";
 $lang['tomorrow_night'] = "Tomorrow Night";
@@ -117,6 +198,7 @@ $lang['tomorrow_night_blue'] = "Tomorrow Night Blue";
 $lang['tomorrow_night_eighties'] = "Tomorrow Night Eighties";
 $lang['twilight'] = "Twilight";
 $lang['vibrant_ink'] = "Vibrant Ink";
+$lang['xcode'] = "XCode"; 
 
 /* key binding */
 $lang['ace'] = "Ace"; 
@@ -126,10 +208,10 @@ $lang['custom'] = "Custom";
 
 /* Soft wrap */
 $lang['off'] = "Off"; 
-$lang['40'] = "40 Chars"; 
-$lang['80'] = "80 Chars"; 
-$lang['100'] = "100 Chars"; 
-$lang['140'] = "140 Chars"; 
+$lang['40'] = "40 Cols"; 
+$lang['80'] = "80 Cols"; 
+$lang['100'] = "100 Cols"; 
+$lang['140'] = "140 Cols"; 
 
 /* --- Common --- */
 $lang['savesettings'] = "Save Preferences";
@@ -141,143 +223,14 @@ $lang['really_uninstall'] = "Really? Are you sure you want to uninstall AceEdito
 $lang['needpermission'] = "Missing Permission!. Set \"Modify Templates\" or \"AceEditor User Preference\" permissions to use this module.";
 
 /* --- Help --- */
-$lang['help_param_action'] = "is used to determine the action of Module tag. Possible values are 'default' and 'head'. Both are needed for correct Frontend Syntaxhighlighting function. <br />Possible values are:
-<ul>
-	<li>head</li>
-	<li>default</li>
-</ul>";
-$lang['help_param_modes'] = "is used with <code>{AceEditor action='head'}</code>. You can include multiple comma separated 'modes' that you will be using on your website. This should be included in your &lt;head&gt; of Template or Page specific Metadata. This will override you Preferences selected in Module Admin area. <br />Possible values are:
-<ul>
-    <li>javascript</li>
-    <li>plain</li>
-    <li>svg</li>
-    <li>html</li>
-    <li>css</li>
-    <li>scss</li>
-    <li>coffee</li>
-    <li>json</li>
-    <li>python</li>
-    <li>ruby</li>
-    <li>perl</li>
-    <li>php</li>
-    <li>java</li>
-    <li>csharp</li>
-    <li>c_cpp</li>
-    <li>clojure</li>
-    <li>coldfusion</li>
-    <li>diff</li>
-    <li>haxe</li>
-    <li>latex</li>
-    <li>lua</li>
-    <li>markdown</li>
-    <li>powershell</li>
-    <li>sql</li>
-    <li>pgsql</li>
-    <li>ocaml</li>
-    <li>textile</li>
-    <li>groovy</li>
-    <li>golang</li>
-    <li>jsx</li>
-    <li>less</li>
-    <li>liquid</li>
-    <li>scad</li>
-    <li>sh</li>
-    <li>xquery</li>
-    <li>yaml</li>
-    <li>scala</li>
-</ul>";
-$lang['help_param_themes'] = "is used with <code>{AceEditor action='head'}</code>. You can include multiple comma separated 'themes' that you will be using on your website. This should be included in your &lt;head&gt; of Template or Page specific Metadata. This will override you Preferences selected in Module Admin area. <br />Possible values are:
-<ul>
-    <li>chrome</li>
-    <li>clouds</li>
-    <li>clouds_midnight</li>
-    <li>cobalt</li>
-    <li>crimson_editor</li>
-    <li>dawn</li>
-    <li>dreamweaver</li>
-    <li>eclipse</li>
-    <li>idle_fingers
-    <li>kr_theme</li>
-    <li>merbivore</li>
-    <li>merbivore_soft</li>
-    <li>mono_industrial</li>
-    <li>monokai</li>
-    <li>pastel_on_dark</li>
-    <li>solarized_dark</li>
-    <li>solarized_light</li>
-    <li>textmate</li>
-    <li>tomorrow</li>
-    <li>tomorrow_night</li>
-    <li>tomorrow_night_blue</li>
-    <li>tomorrow_night_bright</li>
-    <li>tomorrow_night_eighties</li>
-    <li>twilight</li>
-    <li>vibrant_ink</li>
-</ul>";
-$lang['help_param_mode'] = "is used within a page with <code>{AceEditor action='default'}</code> module tag. This specifies Syntaxhighlighter mode for specific code area. <br />Possible values are:
-<ul>
-    <li>javascript</li>
-    <li>plain</li>
-    <li>svg</li>
-    <li>html</li>
-    <li>css</li>
-    <li>scss</li>
-    <li>coffee</li>
-    <li>json</li>
-    <li>python</li>
-    <li>ruby</li>
-    <li>perl</li>
-    <li>php</li>
-    <li>java</li>
-    <li>csharp</li>
-    <li>c_cpp</li>
-    <li>clojure</li>
-    <li>coldfusion</li>
-    <li>diff</li>
-    <li>haxe</li>
-    <li>latex</li>
-    <li>lua</li>
-    <li>markdown</li>
-    <li>powershell</li>
-    <li>sql</li>
-    <li>pgsql</li>
-    <li>ocaml</li>
-    <li>textile</li>
-    <li>groovy</li>
-    <li>golang</li>
-    <li>jsx</li>
-    <li>less</li>
-    <li>liquid</li>
-    <li>scad</li>
-    <li>sh</li>
-    <li>xquery</li>
-    <li>yaml</li>
-    <li>scala</li>
-</ul>";
-$lang['help_param_theme'] = "is used within a page with <code>{AceEditor action='default'}</code> module tag. This specifies Syntaxhighlighter theme for specific code area. <br />Possible values are:
-<ul>
-	<li>clouds</li> 
-	<li>clouds_midnight</li> 
-	<li>cobalt</li> 
-	<li>crimson_editor</li>
-	<li>dawn</li>
-	<li>eclipse</li>
-	<li>idle_fingers</li>
-	<li>kr_theme</li>
-	<li>merbivore</li>
-	<li>merbivore_soft</li>
-	<li>mono_industrial</li>
-	<li>monokai</li>
-	<li>pastel_on_dark</li>
-	<li>solarized_dark</li>
-	<li>solarized_light</li>
-	<li>textmate</li>
-	<li>twilight</li>
-	<li>vibrant_ink</li>
-</ul>";
+$lang['help_available_themes'] = 'Available Themes';
+$lang['help_available_modes'] = 'Available Modes';
+$lang['help_param_mode'] = "is used within a page with <code>{ace_code mode='html'} {/ace_code}</code> block plugin. This specifies Syntaxhighlighter mode for specific code area.";
+$lang['help_param_theme'] = "is used within a page with <code>{ace_code theme='twilight'} {/ace_code}</code> block plugin. This specifies Syntaxhighlighter theme for specific code area.";
 $lang['help_param_width'] = "specifies width of Syntaxhighlighter area in pixel.";
-$lang['help_param_height'] = "specifies height of Syntaxhighlighter area in pixel.";
-$lang['help_param_divid'] = "id of the element containing your code. Use unique id for each code chunck.";
+$lang['help_param_height'] = "specifies height of Syntaxhighlighter area.";
+$lang['help_param_divid'] = "id of the element containing your code. NOTE: Use unique id for each code block.";
+$lang['help_param_htmlentities'] = "This parameter will translate all characters inside {ace_code} block plugin to entities, using PHP <a href=\"http://www.php.net/manual/de/function.htmlentities.php\" target=\"_blank\">htmlentities</a> function. Use this if you are not using any WYSIWYG Editor and write raw code inside block plugin.";
 $lang['help_general_title'] = "General";
 $lang['help_general_text'] = "
 <h3>What does this module do?</h3>
@@ -587,93 +540,18 @@ $lang['help_keyboardshortcuts_content'] = '
 
 $lang['help_frontend_title'] = "Frontend";
 $lang['help_frontend_content'] = "<p>This Module and Ace Script can also be used as a Frontend Syntaxhighlighter.<br />
-To make it work you have to include jQuery Framework, for example using CMSMS {cms_jquery} tag and as well include {AceEditor} in your page twice. First add the module tag in your &lt;head&gt; section of Template or in &quot;Page Specific Metdata&quot; field of your Content page, like {AceEditor action='head'} and another call to specify which area should be highlighted, for example {AceEditor divid='foo'}, which would target a page element with id <em>foo</em>.</p>
+To make it work you have to include jQuery Framework, for example using CMSMS {cms_jquery} tag and as well include {ace_head} in your &lt;head&gt; section of the page. First add the module plugin tag in your &lt;head&gt; section of Template or in &quot;Page Specific Metdata&quot; field of your Content page, like {ace_head} and another call to specify which area should be highlighted, for example {ace_code divid='code-area'} your code {/ace_code} in your content, which would target a page element with id <em>code-area</em>.</p>
 <h3>So how do you use it?</h3>
-<p>First include jQuery and Module tag in your Page &lt;head&gt; area, for example in &quot;Page Specific Metdata&quot;:</p>
+<p>First include jQuery (if you are not using it already) and <code>{ace_head}</code> Module plugin in your Page &lt;head&gt; area, for example in &quot;Page Specific Metdata&quot;:</p>
 <pre>
-{cms_jquery}
-{AceEditor action='head'}
+{cms_jquery exclude='jquery-ui.min.js, jquery.ui.nestedSortable.js,jquery.json.min.js'}
+{ace_head}
 </pre>
-<p>This includes needed scripts for Ace Syntaxhighlighter to work.<br />
-In Modules Admin interface you can select default settings for your 'head' action or use parameter modes='html,javascript' and themes='textmate' which would override selected Preferences.</p>
-<p>Now when you have needed scripts included, one more Module tag call is needed (for example in your Content Editor area) to specify which area of your Page should be highlighted.</p>
+<p>This includes needed JavaScript scripts for Ace Syntaxhighlighter to work.<br />
+In Module Admin interface you can select default settings for your code blocks or use parameter on Module block plugin mode='html' and theme='textmate' which would override selected Preferences.</p>
+<p>Now when you have needed scripts like jQuery and Ace Library and AceInit jQuery plugin with <code>{ace_head}</code> , write your Code which you would like to be highlighted inside <code>{ace_code} {/ace_code}</code> block plugin.</p>
 <pre>
-{AceEditor divid='some-id'}
+{ace_code theme='twilight' mode='ruby' divid='my-code-block'} Code in here {/ace_code}
 </pre>
-<p>This tag includes needed Script and Style that is used to Highlight selected element with specified id.<br />
-All you need then is write your Code that you want to Highlight and wrap it inside an elemen like &lt;div&gt; with specified id.</p>";
-
-$lang['help_about_title'] = "About";
-$lang['help_about_text'] = '<h3>Support</h3>
-<p>As per the GPL, this software is provided as-is. Please read the text of the license for the full disclaimer.</p>
-<h3>Copyright and License</h3>
-<p>Copyright &copy; 2012, Goran Ilic <a href="mailto:uniqu3e@gmail.com">&lt;uniqu3e@gmail.com&gt;</a> <a href="http://www.ich-mach-das.at" rel="external">www.ich-mach-das.at</a>. All Rights Are Reserved.</p>
-<p>This module has been released under the <a href="http://www.gnu.org/licenses/licenses.html#GPL">GNU Public License</a>. You must agree to this license before using the module.</p>
-	<h3>Team</h3>
-	<ul>
-		<li>Goran Ilic (uniqu3) g.ilic@i-arts.eu <br />www.ich-mach-das.at</li>	
-		<li>Tapio Löytty(Stikki) tapsa@orange-media.fi <br />www.orange-media.fi/</li>		
-		<li>Robert Campbell (calguy1000) calguy1000@cmsmadesimple.org  <br />www.calguy1000.com</li>		
-		<li>Jonathan Schmid (Foaly*) hi@jonathanschmid.de <br />www.jonathanschmid.de</li>
-	</ul>
-';
-
-/* --- Changelog --- */
-$lang['changelog'] = "
-<h3>Version 0.1</h3>
-<ul>
-	<li>It's fresh! Nothing changed yet!</li>
-	<li>Using Ace Version 0.2.0</li>
-</ul>
-<h3>Version 0.2</h3>
-<ul>
-	<li>Added CTRL-S Keybinding</li>
-	<li>Added Fullscreenmode</li>
-	<li>Added Frontend Highlighting</li>
-	<li>Updated Ace</li>
-</ul>
-<h3>Version 0.2.1</h3>
-<ul>
-	<li>Added Internet Explorer preference</li>
-	<li>Updated ACE with themes</li>
-</ul>
-<h3>Version 0.2.2</h3>
-<ul>
-	<li>Fix for Safari/Mac</li>
-</ul>
-<h3>Version 0.2.3</h3>
-<ul>
-    <li>Updated to latest ace from github</li>
-    <li>Added additional preferences (Modify Templates, AceEditor User Preference)</li>
-    <li>Added ability to change AceEditor preferences per user</li>
-    <li>Moved module from extenions to myprefs</li>
-</ul>
-<h3>Version 0.2.3.1</h3>
-<ul>
-    <li>Mode preference bugfix</li>
-</ul>
-<h3>Version 0.2.4.1</h3>
-<ul>
-    <li>Updated to latest Ace build</li>
-    <li>Added Toolbar</li>
-</ul>
-<h3>Version 0.2.4.2</h3>
-<ul>
-    <li>Minor bugfix, \$mod could colide with other modules</li>
-    <li>Minor bugfix to toolbar buttons when multiple Ace instances are loaded</li>
-</ul>
-<h3>Version 0.2.5</h3>
-<ul>
-    <li>Fix with html encoding</li>
-    <li>Updated Ace framework scripts</li>
-</ul>
-<h3>Roadmap</h3>
-<ul>
-    <li><del>Add Frontend Syntaxhighlighting</del></li>
-    <li><del>Add Fullscreenmode</del></li>
-    <li><del>Add Keybinding (CTRL+S)</del></li>
-    <li><del>Add Editor behavior (Vim, EMacs)</del></li>
-    <li><del>Maybe add Toolbar</del></li>
-</ul>";
-
+<p>This block plugin includes needed jQuery plugin call and wraps your content inside &ltpre&gt HTML tag specified id.</p>";
 ?>

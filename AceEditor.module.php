@@ -1,42 +1,43 @@
 <?php
-#-------------------------------------------------------------------------
-# Module: AceEditor - Syntax highlighting editor http://ace.ajax.org/.
-# Version: 0.2.3, Goran Ilic uniqu3e@gmail.com http://www.ich-mach-das.at
-#
-#-------------------------------------------------------------------------
-# CMS - CMS Made Simple is (c) 2007 by Ted Kulp (wishy@cmsmadesimple.org)
-# This project's homepage is: http://www.cmsmadesimple.org
-#
-#-------------------------------------------------------------------------
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-# Or read it online: http://www.gnu.org/licenses/licenses.html#GPL
-#
-#-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-# For Help building modules:
-# - Read the Documentation as it becomes available at
-#   http://dev.cmsmadesimple.org/
-# - Check out the Skeleton Module for a commented example
-# - Look at other modules, and learn from the source
-# - Check out the forums at http://forums.cmsmadesimple.org
-# - Chat with developers on the #cms IRC channel
-#-------------------------------------------------------------------------
+/**
+ *
+ * Copyright:
+ *
+ * IDT Media - Goran Ilic & Tapio Löytty
+ * Web: www.i-do-this.com
+ * Email: hi@i-do-this.com
+ *
+ *
+ * Authors:
+ *
+ * Goran Ilic, <ja@ich-mach-das.at>
+ * Web: www.ich-mach-das.at
+ * 
+ * Tapio Löytty, <tapsa@orange-media.fi>
+ * Web: www.orange-media.fi
+ *
+ * License:
+ *-------------------------------------------------------------------------
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Or read it online: http://www.gnu.org/licenses/licenses.html#GPL
+ *
+ * ------------------------------------------------------------------------- */
 
 class AceEditor extends CMSModule
 {
+
 	#---------------------
 	# Attributes
 	#---------------------	
@@ -51,14 +52,14 @@ class AceEditor extends CMSModule
 	private $_xmlactive        = false;
 	private $_jsonactive       = false;
 	private $_defaultactive    = false;
-
+	
 	#---------------------
 	# Module api methods
 	#---------------------		
 
 	public function GetName()
 	{
-		return 'AceEditor';
+		return get_class($this);
 	}
 
 	public function GetFriendlyName()
@@ -68,26 +69,7 @@ class AceEditor extends CMSModule
 
 	public function GetVersion()
 	{
-		return '0.2.6';
-	}
-
-	public function GetHelp()
-	{
-		$smarty = cmsms()->GetSmarty();
-		$config = cmsms()->GetConfig();
-		$smarty->assign('module_path', ($this->GetModuleURLPath()));
-
-		$smarty->assign('help_general_title', $this->Lang('help_general_title'));
-		$smarty->assign('help_general_text', $this->Lang('help_general_text'));
-		$smarty->assign('help_keyboardshortcuts_title', $this->Lang('help_keyboardshortcuts_title'));
-		$smarty->assign('help_keyboardshortcuts_content', $this->Lang('help_keyboardshortcuts_content'));
-		$smarty->assign('help_frontend_title', $this->Lang('help_frontend_title'));
-		$smarty->assign('help_frontend_content', $this->Lang('help_frontend_content'));
-		$smarty->assign('help_frontend_sample', cms_htmlentities($this->Lang('help_frontend_sample')));
-		$smarty->assign('help_about_title', $this->Lang('help_about_title'));
-		$smarty->assign('help_about_text', $this->Lang('help_about_text'));
-
-		return $this->ProcessTemplate('help.tpl');
+		return '1.0';
 	}
 
 	public function GetAuthor()
@@ -102,53 +84,14 @@ class AceEditor extends CMSModule
 
 	public function GetChangeLog()
 	{
-		return $this->Lang('changelog');
+		return @file_get_contents(dirname(__FILE__).'/changelog.html');
 	}
 
 	public function IsPluginModule()
 	{
 		return true;
-	}
-
-	public function InitializeFrontend()
-	{
-		$this->RegisterModulePlugin(true);
-		$this->RestrictUnknownParams();
-
-		$this->SetParameterType('action', CLEAN_STRING);
-		$this->SetParameterType('modes', CLEAN_STRING);
-		$this->SetParameterType('themes', CLEAN_STRING);
-		$this->SetParameterType('mode', CLEAN_STRING);
-		$this->SetParameterType('theme', CLEAN_STRING);
-		$this->SetParameterType('width', CLEAN_STRING);
-		$this->SetParameterType('height', CLEAN_STRING);
-		$this->SetParameterType('divid', CLEAN_STRING);
-		
-	}
-
-	public function InitializeAdmin()
-	{
-		$this->CreateParameter('action', 'default', $this->Lang('help_param_action'));
-		$this->CreateParameter('modes', 'html', $this->Lang('help_param_modes'));
-		$this->CreateParameter('themes', 'textmate', $this->Lang('help_param_themes'));
-		$this->CreateParameter('mode', 'html', $this->Lang('help_param_mode'));
-		$this->CreateParameter('theme', 'textmate', $this->Lang('help_param_theme'));
-		$this->CreateParameter('width', '400', $this->Lang('help_param_width'));
-		$this->CreateParameter('height', '400', $this->Lang('help_param_height'));
-		$this->CreateParameter('divid', 'editor', $this->Lang('help_param_divid'));
-		
-	}
-
-	public function LazyLoadFrontend()
-	{
-		return true; 
-	}
-
-	public function LazyLoadAdmin()
-	{
-		return true;
-	}
-
+	}	
+	
 	public function HasAdmin()
 	{
 		return true;
@@ -187,22 +130,27 @@ class AceEditor extends CMSModule
 	public function UninstallPreMessage()
 	{
 		return $this->Lang('really_uninstall');
+	}	
+	
+	public function LazyLoadFrontend()
+	{
+		return false; 
+	}
+
+	public function LazyLoadAdmin()
+	{
+		return true;
 	}
 
 	public function HasCapability($capability, $params = array())
 	{
 		switch ($capability) {
-			default:
-				return false;
-				break;
-			
-			case 'wysiwyg':
-				return false;
-				break;
-			
+					
 			case 'syntaxhighlighting':
 				return true;
-				break;
+				
+			default:
+				return false;
 		}
 	}
 
@@ -219,103 +167,78 @@ class AceEditor extends CMSModule
 	public function SyntaxPageFormSubmit()
 	{
 		return;
+	}	
+	
+	public function GetHelp()
+	{
+		$smarty = cmsms()->GetSmarty();
+		
+		$smarty->assign('module_path', ($this->GetModuleURLPath()));
+		$smarty->assign('help_general_title', $this->Lang('help_general_title'));
+		$smarty->assign('help_general_text', $this->Lang('help_general_text'));
+		$smarty->assign('help_keyboardshortcuts_title', $this->Lang('help_keyboardshortcuts_title'));
+		$smarty->assign('help_keyboardshortcuts_content', htmlspecialchars_decode($this->Lang('help_keyboardshortcuts_content')));
+		$smarty->assign('help_frontend_title', $this->Lang('help_frontend_title'));
+		$smarty->assign('help_frontend_content', $this->Lang('help_frontend_content'));
+		$smarty->assign('help_frontend_sample', cms_htmlentities($this->Lang('help_frontend_sample')));
+		$smarty->assign('help_about_title', $this->Lang('help_about_title'));
+		$smarty->assign('help_available_themes', $this->Lang('help_available_themes'));
+		$smarty->assign('help_available_modes', $this->Lang('help_available_modes'));
+		$smarty->assign('modes_list', $this->AceGetModes());
+		$smarty->assign('themes_list', $this->AceGetThemes());
+
+		return $this->ProcessTemplate('help.tpl');
+	}
+
+	public function InitializeFrontend()
+	{
+		$this->RestrictUnknownParams();
+
+		$this->SetParameterType('action', CLEAN_STRING); // removed
+		$this->SetParameterType('modes', CLEAN_STRING); // removed
+		$this->SetParameterType('themes', CLEAN_STRING); // removed
+		$this->SetParameterType('mode', CLEAN_STRING); 
+		$this->SetParameterType('theme', CLEAN_STRING);
+		$this->SetParameterType('width', CLEAN_STRING);
+		$this->SetParameterType('height', CLEAN_STRING);
+		$this->SetParameterType('divid', CLEAN_STRING);
+		$this->SetParameterType('htmlentities', CLEAN_INT);
+	}
+
+	public function InitializeAdmin()
+	{
+		$this->CreateParameter('mode', 'html', $this->Lang('help_param_mode'));
+		$this->CreateParameter('theme', 'textmate', $this->Lang('help_param_theme'));
+		$this->CreateParameter('width', '400', $this->Lang('help_param_width'));
+		$this->CreateParameter('height', '400', $this->Lang('help_param_height'));
+		$this->CreateParameter('divid', 'editor', $this->Lang('help_param_divid'));
+		$this->CreateParameter('htmlentities', 0, $this->Lang('help_param_htmlentities'));
 	}
 
 	public function DoAction($name, $id, $params, $returnid = '')
 	{
 		$smarty = cmsms()->GetSmarty();
 		
-		$smarty->assign_by_ref('ace_mod', $this);
-		$smarty->assign_by_ref('actionid', $id);
-		$smarty->assign_by_ref('returnid', $returnid);
+		$smarty->assignByRef($this->GetName(), $this);
 		
 		parent::DoAction($name, $id, $params, $returnid);
 	}
 
 	public function SyntaxTextarea($name = 'textarea', $syntax = 'html', $columns = '80', $rows = '15', $encoding = '', $content = '', $stylesheet = '', $addtext = '')
 	{
-		$textarea           = '';
 		$this->syntaxactive = true;
-		$smarty             = $this->smarty;
-		$config             = cmsms()->GetConfig();
-		$smarty->assign_by_ref('ace_mod', $this);
+		$smarty = cmsms()->GetSmarty();
+		
+		$smarty->assignByRef($this->GetName(), $this);
 		$smarty->assign('textareaid', "ace_editor" . $this->noeditors);
 		$smarty->assign('editorid', "ace-editor" . $this->noeditors);
 		$smarty->assign('textareaname', $name);
 		$smarty->assign('syntax_content', htmlspecialchars($content));
 		$smarty->assign('ace_id', $this->noeditors);
-		
-		// Assign prefs
-		/*
-		$smarty->assign('width', $this->AceGetPreference('width', '80'));
-		$smarty->assign('height', $this->AceGetPreference('height', '40'));
-		$smarty->assign('theme', $this->AceGetPreference('theme'));
-		$smarty->assign('fontsize', $this->AceGetPreference('fontsize'));
-		$smarty->assign('soft_wrap', $this->AceGetPreference('soft_wrap'));
-		
-		if ($this->AceGetPreference('enable_ie')) {
-			$smarty->assign('enable_ie', 'true');
-		} else {
-			$smarty->assign('enable_ie', 'false');
-		}
-		*/
-		if ($this->AceGetPreference('full_line')) {
-			$smarty->assign('full_line', 'line');
-		} else {
-			$smarty->assign('full_line', 'text');
-		}
-		
-		if ($this->AceGetPreference('highlight_active')) {
-			$smarty->assign('highlight_active', 'true');
-		} else {
-			$smarty->assign('highlight_active', 'false');
-		}
-		
-		if ($this->AceGetPreference('show_invisibles')) {
-			$smarty->assign('show_invisibles', 'true');
-		} else {
-			$smarty->assign('show_invisibles', 'false');
-		}
-		
-		if ($this->AceGetPreference('persistent_hscroll')) {
-			$smarty->assign('persistent_hscroll', 'true');
-		} else {
-			$smarty->assign('persistent_hscroll', 'false');
-		}
-		
-		if ($this->AceGetPreference('show_gutter')) {
-			$smarty->assign('show_gutter', 'true');
-		} else {
-			$smarty->assign('show_gutter', 'false');
-		}
-		
-		if ($this->AceGetPreference('print_margin')) {
-			$smarty->assign('print_margin', 'true');
-		} else {
-			$smarty->assign('print_margin', 'false');
-		}
-		
-		if ($this->AceGetPreference('soft_tab')) {
-			$smarty->assign('soft_tab', 'true');
-		} else {
-			$smarty->assign('soft_tab', 'false');
-		}
 
-		if ($this->AceGetPreference('enable_behaviors')) {
-			$smarty->assign('enable_behaviors', 'true');
-		} else {
-			$smarty->assign('enable_behaviors', 'false');
-		}
-
-		if ($this->AceGetPreference('highlight_selected')) {
-			$smarty->assign('highlight_selected', 'true');
-		} else {
-			$smarty->assign('highlight_selected', 'false');
-		}
-		// TODO: could do all the switching in here, list all modes, then syntax could be auto set without choosing one in preferences 
 		switch ($syntax) {
 			case 'html':
-				$smarty->assign('mode', 'html');
+				$smarty->assign('mode', 'smarty');
 				$this->_htmlactive = true;
 				break;
 			case 'js':
@@ -349,49 +272,71 @@ class AceEditor extends CMSModule
 				break;
 		}
 
-		$textarea = $this->ProcessTemplate('ace.tpl');
 		$this->noeditors++;
 		
-		return $textarea;
+		return $this->ProcessTemplate('ace.tpl');
 	}
 
 	public function SyntaxGenerateHeader($htmlresult = '')
 	{
-
-		$header = '
-		<link rel="stylesheet" type="text/css" href="' . $this->GetModuleURLPath() . '/css/style.css" />
-		<script src="' . $this->GetModuleURLPath() . '/js/functions.js"></script>
-		<script src="' . $this->GetModuleURLPath() . '/ace/src/ace.js"></script>
-		<script src="' . $this->GetModuleURLPath() . '/ace/src/keybinding-vim.js"></script>
-		<script src="' . $this->GetModuleURLPath() . '/ace/src/keybinding-emacs.js"></script>';
-		return $header;
-	}
-/*
-	public function GetHeaderHTML()
-	{
-		$incdir = $this->GetModuleURLPath();
-		$tmpl   = <<<EOT
-	<script type="text/javascript" src="{$incdir}/js/functions.js"></script>
+		return <<<EOT
+		<link rel="stylesheet" type="text/css" href="{$this->GetModuleURLPath()}/lib/css/aceUI.css" />
+		<script src="{$this->GetModuleURLPath()}/lib/ace/ace.js"></script>
+		<script src="{$this->GetModuleURLPath()}/lib/ace/keybinding-vim.js"></script>
+		<script src="{$this->GetModuleURLPath()}/lib/ace/keybinding-emacs.js"></script>	
+		<script src="{$this->GetModuleURLPath()}/lib/js/functions.js"></script>
 EOT;
-		return $this->ProcessTemplateFromData($tmpl);
 	}
-*/
+
 	#---------------------
 	# Module methods
 	#--------------------- 
 
-	final public function AceGetPreference($name)
+	final public function AceGetPreference($name, $default = '')
 	{
 		$userid = get_userid();
 		$result = cms_userprefs::get_for_user($userid, $this->GetName() . '_' . $name);
 		
-		if ($result === '') {
-			$result = $this->GetPreference($name);
-		}
-		
+		if ($result === '') 
+			return $default;
+				
 		return $result;
-		
 	}
 	
+	final protected function AceSetPreference($name, $value)
+	{
+		$userid = get_userid();
+		cms_userprefs::set_for_user($userid, $this->GetName() . '_' . $name, $value);	
+	}
+	
+	final public function AceGetModes()
+	{
+		$modes = array();
+		foreach(glob(cms_join_path($this->GetModulePath(), 'lib', 'ace', 'modes') . DS . '*.js') as $filename) {
+
+			$mode = basename($filename);
+			$mode = explode('.', $mode);
+			$mode = explode('-', $mode[0]);
+		
+			$modes[$mode[1]] = $this->Lang($mode[1]);
+		}
+		
+		return $modes;
+	}
+	
+	final public function AceGetThemes()
+	{
+		$themes = array();
+		foreach(glob(cms_join_path($this->GetModulePath(), 'lib', 'ace', 'themes') . DS . '*.js') as $filename) {
+		
+			$theme = basename($filename);
+			$theme = explode('.', $theme);
+			$theme = explode('-', $theme[0]);
+			
+			$themes[$theme[1]] = $this->Lang($theme[1]);
+		}
+		
+		return $themes;
+	}
 }
 ?>

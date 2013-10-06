@@ -1,0 +1,698 @@
+/**
+ *
+ * Copyright:
+ *
+ * IDT Media - Goran Ilic & Tapio Löytty
+ * Web: www.i-do-this.com
+ * Email: hi@i-do-this.com
+ *
+ *
+ * Authors:
+ *
+ * Goran Ilic, <ja@ich-mach-das.at>
+ * Web: www.ich-mach-das.at
+ * 
+ * Tapio Löytty, <tapsa@orange-media.fi>
+ * Web: www.orange-media.fi
+ *
+ * License:
+ *-------------------------------------------------------------------------
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Or read it online: http://www.gnu.org/licenses/licenses.html#GPL
+ *
+ * ------------------------------------------------------------------------- */
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../font/icomoon.eot');
+	src:url('../font/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../font/icomoon.woff') format('woff'),
+		url('../font/icomoon.ttf') format('truetype'),
+		url('../font/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.ace-icon-expand, .ace-icon-contract, .ace-icon-cog, .ace-icon-file, 
+.ace-icon-cogs, .ace-icon-wand, .ace-icon-list, .ace-icon-search, 
+.ace-icon-cancel-circle, .ace-icon-checkmark-circle, .ace-icon-spell-check, .ace-icon-console {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.ace-icon-expand:before {
+	content: "\e000";
+}
+.ace-icon-contract:before {
+	content: "\e001";
+}
+.ace-icon-cog:before {
+	content: "\e002";
+}
+.ace-icon-file:before {
+	content: "\e003";
+}
+.ace-icon-cogs:before {
+	content: "\e006";
+}
+.ace-icon-wand:before {
+	content: "\e007";
+}
+.ace-icon-list:before {
+	content: "\e00b";
+}
+.ace-icon-search:before {
+	content: "\e00c";
+}
+.ace-icon-cancel-circle:before {
+	content: "\e00d";
+}
+.ace-icon-checkmark-circle:before {
+	content: "\e00e";
+}
+.ace-icon-spell-check:before {
+	content: "\e00f";
+}
+.ace-icon-console:before {
+	content: "\e010";
+}
+
+.ace-wrapper a:hover,
+.ace-wrapper a:active,
+.ace-wrapper a:focus {
+	outline: 0;
+	background: none;
+}
+
+a.ace-icon {
+	font-style: normal;
+	font-size: 16px;
+	color: #999999;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.ace-icon {
+	font-style: normal;
+}
+.ace-hidden {
+	display: none;
+}
+
+/* MAIN EDITOR CONTAINER */
+.ace-wrapper {
+	max-width: 100%;
+	max-height: 100%;
+	position: relative;
+	display: inline-block;
+	margin: 10px 0;
+	min-height: 300px;
+}
+
+.ace-wrapper.fullscreen {
+	z-index: 99999;
+}
+
+.ace-wrapper .ui-resizable-se {
+	right: 8px;
+	bottom: 8px;
+}
+
+.ace-wrapper.fullscreen .ui-resizable-se {
+	display: none;
+}
+
+.ace-ui-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-radius: 2px;
+	border: 4px solid #343434;
+	background: #343434;
+	box-shadow: 0 0 4px #343434;
+	margin: 8px;
+}
+
+/* EDITOR CONTENT */
+
+.ace-wrapper textarea {
+	display: block;
+	border-radius: 0;
+	border: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.ace-wrapper textarea {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New';
+	font-size: 13px;
+}
+
+.ace_editor_textarea {
+	position: relative;
+}
+
+.ace-container {
+	position: absolute;
+	top: 40px;
+	bottom: 27px;
+	left: 0;
+	right: 0;
+}
+
+.ace_editor_content {
+	height: 100%;
+}
+
+.ace-wrapper.fullscreen {
+	position: fixed;
+	z-index: 9999;
+	margin: 0;
+	left: 0;
+	top: 0;
+}
+
+.ace-wrapper.fullscreen .ace-ui-container {
+	margin: 0;
+}
+
+/* EDITOR TOP TOOLBAR */
+
+.ace-ui-toolbar {
+	background: #343434;
+	height: 38px;
+	position: relative;
+	color: #fff;
+	color: #999999;
+	padding: 0 0 0 1%;
+	box-shadow: inset 0px -5px 6px 0px rgba(0, 0, 0, .2);
+}
+
+.ace-left {
+	display: inline-block;
+	float: left;
+	width: auto;
+}
+
+.ace-right {
+	display: inline-block;
+	float: right;
+	width: auto;
+}
+
+.ace-info-divider {
+	display: block;
+	float: left;
+	height: 32px;
+	width: 1px;
+	background: #333333;
+	margin: 0 15px 0 15px;
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .5);
+}
+
+.ace-ui-toolbar ::-webkit-input-placeholder {
+	color: #5C5C5C;
+}
+
+.ace-ui-toolbar:-moz-placeholder {
+	color: #5C5C5C;
+}
+
+.ace-ui-toolbar ::-moz-placeholder {
+	color:#5C5C5C;
+}
+
+.ace-ui-toolbar:-ms-input-placeholder {
+	color:#5C5C5C;
+}
+
+.ace-ui-toolbar input[type="text"] {
+	color: #999999;
+}
+
+.ace-text-input {
+	padding: 0;	
+	font-size: 14px;
+	height: 26px;
+	line-height: 26px;
+	margin: 5px 5px 0 0;
+}
+
+.ace-text-input .ace-info-divider {
+	display: inline-block;
+	float: none;
+	height: 24px;
+}
+
+.ace-text-input .ace-input {
+	border: none;
+	background: transparent;
+	font-size: 11px;
+	position: relative;
+	padding: 0;
+}
+
+.ace-option-icon {
+	display: inline-block;
+	padding: 0 4px;
+	position: relative;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.ace-option-icon:hover,
+.ace-option-icon.ace-menu-active {
+	color: #38AEFF;
+}
+
+.ace-fullscreen-button {
+	line-height: 26px;
+	margin: 5px 5px 0 0;
+	text-align: center;
+	width: 20px;
+	text-shadow: 1px -1px 1px #000;
+}
+
+.ace-toggle-editor {
+	background: #222222;
+	height: 26px;
+	background: rgba(0, 0, 0, .25);
+	border-radius: 3px;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3), 0 1px rgba(255, 255, 255, .1);
+	margin-top: 5px;
+}
+
+.ace-ui-toolbar input[type="radio"].ace-toggle {
+	display: none;
+}
+
+.ace-ui-toolbar input[type="radio"].ace-toggle:checked + label {
+	background: #38AEFF;
+	box-shadow: inset 0 1px rgba(255, 255, 255, .5), 0 0 2px rgba(0, 0, 0, .2);
+	cursor: default;
+	color: #333333;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.ace-ui-toolbar input[type="radio"].ace-toggle + label {
+	width: auto;
+	height: 24px !important;
+	line-height: 24px;
+	border-radius: 3px;
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 10px;
+	margin: 1px;
+	font-weight: bold;
+	background: rgba(0, 0, 0, 0.25);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .45);
+}
+
+.ace-ui-toolbar input[type="radio"].ace-toggle-left + label {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.ace-ui-toolbar input[type="radio"].ace-toggle-right + label {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.ace-tooltip {
+	position: relative;
+	display: inline-block;
+}
+
+.ace-tooltip:after {
+	position: absolute;
+	opacity: 0;
+	top: -999em;
+	z-index: 999;
+}
+
+.ace-tooltip:hover:after {
+	content: attr(data-tip);
+	background: #222;
+	opacity: .95;
+	color: #999999;
+	text-shadow: none;
+	padding: 8px 10px;
+	font-size: 11px;
+	line-height: 11px;
+	white-space: nowrap;
+	font-weight: normal;
+	border-radius: 2px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+	top: 100%;
+	left: 50%;
+}
+
+.ace-tooltip.ace-tooltip-top-left:hover:after {
+	right: 50%;
+	left: auto;
+	bottom: 100%;
+	top: auto;
+}
+
+/* BOTTOM INFORMATION BAR */
+
+.ace-ui-toolbar-bottom {
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+	height: 15px;
+	line-height: 15px;
+	padding: 5px 0;
+	background: #343434;
+	color: #999999;
+	border-top: 2px solid #343434;
+	width: 100%;
+	z-index: 10;
+	box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, .6);
+}
+
+.ace-ui-bottom-left {
+	width: 70%;
+	padding: 0 1%;
+}
+
+.ace-editor-info-bottom {
+	width: auto;
+	font-size: 11px;
+}
+
+.ace-ui-toolbar-bottom  .ace-info-divider {
+	height: 14px;
+}
+
+/* OPTION MENU */
+
+.ace-option-menu,
+#oe_mainarea .ace-option-menu {
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+.ace-option-menu > li,
+#oe_mainarea .ace-option-menu > li {
+	display: inline-block;
+	position: relative;
+} 
+
+.ace-list {
+	display: none;
+	position: absolute;
+	top: 46px;
+	left: -70px;
+	width: 170px;
+	z-index: 999;
+	background: #222;
+	opacity: .95;
+	color: #999999;
+	text-shadow: none;
+	padding: 8px 10px;
+	font-size: 11px;
+	line-height: 11px;
+	white-space: nowrap;
+	font-weight: normal;
+	border-radius: 2px;
+	border: 4px solid #343434;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ace-list:after{
+	content: '';
+	width: 0;
+	height: 0;
+	z-index: 10;
+	border-style: solid;
+	border-width: 0 10px 10px 10px;
+	top: -10px;
+	left: 50%;
+	margin-left: -10px;
+	position: absolute;
+	border-color: transparent transparent #343434 transparent;
+}
+
+#oe_mainarea .ace-option-menu ul.ace-list,
+.ace-option-menu ul.ace-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#oe_mainarea .ace-option-menu ul li,
+.ace-option-menu ul li {
+	position: relative;
+	list-style: none;
+	line-height: 28px;
+	border-bottom: 1px solid #343434;
+	padding: 0 15px;
+}
+
+#oe_mainarea .ace-option-menu ul li:hover,
+.ace-option-menu ul li:hover {
+	color: #38AEFF;
+	cursor: pointer;
+}
+
+.ace-option-menu ul li:last-child {
+	border: none;
+}
+
+.ace-ui-toolbar-bottom .ace-list {
+	width: 398px;
+	overflow-y: scroll;
+	max-height: 300px;
+	right: 50%;
+	left: auto;
+	bottom: 40px;
+	top: auto;
+}
+
+#oe_mainarea .ace-ui-toolbar-bottom .ace-option-menu ul li,
+.ace-ui-toolbar-bottom .ace-option-menu ul li {
+	margin: 0 2px;
+	padding: 0 10px;
+	float: left;
+	width: 102px;
+}
+
+.ace-option-menu i {
+	display: none;
+}
+
+.ace-option-menu .ace-selected i {
+	display: inline-block;
+}
+
+/* OVERRIDE UI COLOR SCHEME IF BRIGHT WAS DETECTED */
+
+.ace-bright.ace-ui-container {
+	border: 4px solid #E0E0E0;
+	background: #E0E0E0;
+	box-shadow: 0 0 4px #CCCCCC;
+}
+
+.ace-bright .ace-ui-toolbar {
+	background: #EFEFEF;
+	color: #343434;
+	box-shadow: inset 0 -2px 2px 0 rgba(220, 220, 220, .3);
+}
+
+.ace-bright a.ace-icon {
+	color: #343434;
+}
+
+.ace-bright .ace-fullscreen-button {
+	text-shadow: 0 1px 0 #FFF;
+}
+
+.ace-bright .ace-info-divider {
+	background: #DDDDDD;
+	box-shadow: 0px 0px 10px 1px rgba(190, 190, 190, .2);
+}
+
+.ace-bright .ace-ui-toolbar ::-webkit-input-placeholder {
+	color: #C2C2C2;
+}
+
+.ace-bright .ace-ui-toolbar:-moz-placeholder {
+	color: #C2C2C2;
+}
+
+.ace-bright .ace-ui-toolbar ::-moz-placeholder {
+	color: #C2C2C2;
+}
+
+.ace-bright .ace-ui-toolbar:-ms-input-placeholder {
+	color: #C2C2C2;
+}
+
+
+.ace-bright .ace-toggle-editor {
+	background: #C6C6C6;
+	background: rgba(198, 198, 198, .50);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3), 0 1px rgba(255, 255, 255, .1);
+}
+
+.ace-bright .ace-ui-toolbar input[type="radio"].ace-toggle + label {
+	background: rgba(255, 255, 255, .25);
+	text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.ace-bright .ace-ui-toolbar input[type="radio"].ace-toggle:checked + label {
+	background: #38AEFF;
+	box-shadow: inset 0 1px rgba(255, 255, 255, .5), 0 0 2px rgba(0, 0, 0, .2);
+	color: #333333;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.ace-bright .ace-tooltip:hover:after {
+	background: #FFFFFF;
+	color: #333333;
+}
+
+.ace-bright .ace-list {
+	background: #FFFFFF;
+	color: #333333;
+	border: 4px solid #EFEFEF;
+}
+
+.ace-bright .ace-list:after{
+	border-color: transparent transparent #EFEFEF transparent;
+}
+
+#oe_mainarea .ace-bright .ace-option-menu ul li,
+.ace-bright .ace-option-menu ul li {
+	border-bottom: 1px solid #EFEFEF;
+}
+
+.ace-bright .ace-ui-toolbar-bottom {
+	background: #EFEFEF;
+	color: #343434;
+	border-top: 2px solid #E0E0E0;
+	box-shadow: inset 0px 0px 6px 0px rgba(220, 220, 220, .6);
+}
+
+/* NICER SCROOLBAR FOR SMART BROWSER */
+@media only screen and (-webkit-min-device-pixel-ratio:0) { 
+	.ace-container ::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	
+	.ace-container ::-webkit-scrollbar-track {
+		background-color: rgba(52, 52, 52, .3);
+		border-radius: 5px;
+	}
+	
+	.ace-container  ::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.6);
+		border-radius: 5px;
+	}
+	
+	.ace-container ::-webkit-scrollbar-button {
+		display: none;
+	}
+	
+	.ace_scrollbar {
+		width: 7px !important;
+		bottom: 30px !important;
+		top: 30px !important;
+	}
+	
+	.ace_scrollbar-h {
+		height: 7px !important;
+		right: 30px !important;
+		left: 60px !important;
+	}
+	
+	.ace_scrollbar-h .ace_scrollbar-inner {
+		height: 7px !important;
+	}
+}
+
+/* HIDDING STUFF */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/* CLEAR JUST IN CASE */
+
+.cf:before, .cf:after { 
+	content: ''; 
+	display: table;
+}
+
+.cf:after, .clear { 
+	clear: both; 
+}
+
+:-webkit-full-screen #screen {
+	width: 100%;
+	height: 100%;
+}
